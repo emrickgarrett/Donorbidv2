@@ -43,6 +43,7 @@ if($image === '')
 
     <link rel="stylesheet" href="css/donorbid.css">
     <script type="text/javascript" src="js/userFunctions.js"></script>
+    <script type="text/javascript" src="js/product.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </HEAD>
@@ -91,17 +92,17 @@ if($image === '')
                     <div class="row">
                         <div class="col-lg-3" id="user_descrip">
                             <div id="img_round">
-                                <a href="#"><img width="100px" height="100px" src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10418246_10203513025446113_1315865915571540048_n.jpg?oh=7a750c5eee077aefac84d80a5a796cf7&oe=557AD030&__gda__=1434848085_1b9d0e2ad3633fd8224d6274e41a09d9"/></a>
+                                <a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42"><img width="100px" height="100px" src="images/pam.jpg"/></a>
                             </div>
                             <div style="text-align:center;margin-left:-1.5em;">
-                                <span id="username"><a href="#">emrickgj</a></span>
+                                <span id="username"><a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42">swagyolo42</a></span>
 
                             </div>
                         </div>
                         <div class="col-lg-4" style="margin-top:.5em;">
                             <span style="font-size:1.5em;font-weight:bold;margin-left:-1em;">I Support...</span>
                             <ul style="display:inline;margin-left:-.5em;margin-top:-1em;">
-                                <li style="margin-bottom:.5em;"><a href="#">USPCA</a></li>
+                                <li style="margin-bottom:.5em;"><a href="#">SPCA</a></li>
                                 <li style="margin-bottom:.5em;"><a href="#">Feeding America</a></li>
                                 <li><a href="#">The Red Cross</a></li>
                             </ul>
@@ -110,14 +111,14 @@ if($image === '')
 
                     <div  id="non_profit_descrip">
                         <span style="display:block;font-size:2em;"><?php echo $non_profit;?></span>
-                        <p><?php echo $non_profit?>; is a Non Profit Organization that cares deeply about it's cause. It is the leading
+                        <p><?php echo $non_profit?>; is a Non Profit Organization that cares deeply about its' cause. It is the leading
                         non profit in its' sector for innovation, and is currently on track to meet it's monthly goal of $1,000,000 raised through
                         DonorBid.com With your help, <?php echo $non_profit;?> will be able to benefit the community and all of it's members.</p>
 
                         <div class="input-group" id="pay" style="max-width:150px;">
-                            <input type="text" class="form-control" placeholder="$0.00" min="<?php echo $price; ?>">
+                            <input id="donate_amt" type="text" class="form-control" placeholder="$0.00" min="<?php echo $price; ?>">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-large btn-primary">Bid!</button>
+                                <button id="bid_button" type="button" class="btn btn-large btn-primary">Bid!</button>
                             </div>
                         </div>
                     </div>
@@ -139,5 +140,31 @@ if($image === '')
 
 
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+
+            $("#bid_button").click(function(){
+
+                var price = $("#donate_amt").val();
+
+                if(confirm("Are you sure you want to bid on this for " + price + "?")){
+
+
+                    var image = "<?php echo $image;?>";
+                    var item_name = "<?php echo $item_name;?>";
+                    var charity = "<?php echo $non_profit;?>";
+                    window.location.href = "winner.php?image=" + image + "&name=" + item_name + "&charity=" + charity +"&price=" + price;
+
+
+                }else{
+
+                }
+
+            });
+
+        });
+    </script>
 </BODY>
 </HTML>

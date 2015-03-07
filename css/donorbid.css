@@ -106,3 +106,75 @@ body{
 #username{
     font-size:1em;
 }
+
+#profile{
+    margin-top:2em;
+    margin-left:2em;
+}
+
+#right_content{
+    float:left;
+    margin-top:1em;
+}
+
+#right_content a{
+    margin-right:2em;
+    font-size:1.0em;
+}
+
+#left_content{
+    margin-left:1em;
+    margin-top:1em;
+}
+
+#description-profile{
+    margin-top:13.5em;
+    margin-left:-21em;
+    width:75%;
+}
+
+#buyer_info, #seller_info{
+    margin-top:10em;
+}
+
+#buyer_info{
+    text-align:right;
+}
+
+#seller_info{
+    text-align:left;
+}
+
+#item_info{
+    text-align:center;
+}
+
+#slider_container{
+    margin-top:4em;
+}
+
+#slider{
+    background:#2CBB76;
+    margin:0;
+    padding:0;
+}
+
+#amount_non_profit{
+    margin-top:-1em;
+    margin-left:-30em;
+}
+
+#amount_you{
+    margin-bottom:-1.6em;
+    margin-right:-30em;
+}
+
+#non_profit_don{
+    margin-top:-1.1em;
+    margin-left:-52em;
+}
+
+#you_don{
+    margin-bottom:-1.2em;
+    margin-right:-47em;
+}
