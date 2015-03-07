@@ -1,0 +1,91 @@
+body{
+    padding:0;
+    margin:1.1em;
+}
+
+.header{
+    border-bottom: 1px solid black;
+    padding:0;
+    margin:0;
+}
+
+.header h2{
+    text-align:left;
+    margin:0;
+    padding:0;
+    display: inline;
+}
+
+.header #profile{
+    text-align:right;
+    display:inline;
+}
+
+.header #profile ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    display:inline;
+}
+
+#search{
+    margin-top:1em;
+}
+
+#bid_text{
+    font-size:1.5em;
+    margin:0;
+    padding:0;
+}
+
+#myCarousel{
+    width:90%;
+    max-height:600px;
+    font-size:3.5em;
+    color:white;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:.5em;
+}
+
+#myCarousel .descrip{
+
+    position:absolute;
+    top:50px;
+    left:200px;
+    color:white;
+    font-size:1em;
+
+}
+
+#causes{
+    border-right: 1px dashed grey;
+}
+
+#causes ul{
+    list-style-type:none;
+}
+
+#causes li{
+    font-size:1em;
+}
+
+#items{
+    margin-top:1em;
+}
+
+#items img{
+    opacity:.5;
+}
+
+#items img:hover{
+    opacity:1;
+}
+
+.item-description{
+    display:block;
+}
+
+.money{
+    color:red;
+}
