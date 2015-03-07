@@ -24,6 +24,8 @@
 
     <link rel="stylesheet" href="css/donorbid.css">
     <script type="text/javascript" src="js/userFunctions.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
 </HEAD>
 <BODY>
     <?php require('dry/header.php'); ?>

@@ -1,6 +1,7 @@
 body{
     padding:0;
     margin:1.1em;
+    font-family:'Lato', 'sans-serif';
 }
 
 .header{
@@ -88,4 +89,20 @@ body{
 
 .money{
     color:red;
+}
+
+#non_profit_descrip{
+    margin-top:1em;
+}
+
+#user_descrip{
+    margin-top:1em;
+}
+
+#img_round img{
+    border-radius: 15px;
+}
+
+#username{
+    font-size:1em;
 }

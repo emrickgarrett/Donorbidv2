@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="css/donorbid.css">
     <script type="text/javascript" src="js/userFunctions.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
 </HEAD>
 <BODY>
 
@@ -62,10 +64,10 @@
             <!-- Items Go Here -->
             <div class="row" style="text-align:center;margin-bottom:2em;">
                 <div class="col-lg-4">
-                    <a href="product.php?image=https://www.apple.com/ipod-shuffle/images/hero1.jpg&price=59.99&non_profit=Feeding%20America&item_name=iPod&descrip=New%20Ipod%20Shuffle%20Like%20New"><img style="width:200px;height:150px;" src="https://www.apple.com/ipod-shuffle/images/hero1.jpg" alt="ipod"/></a>
+                    <a href="product.php?image=http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png&price=59.99&non_profit=Feeding%20America&item_name=iPad&descrip=New%20Ipad%20Like%20New"><img style="width:200px;height:150px;" src="http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png" alt="ipod"/></a>
                     <div class="item-description">
-                        <span><a href="product.php?image=https://www.apple.com/ipod-shuffle/images/hero1.jpg&price=59.99&non_profit=Feeding%20America&item_name=iPod&descrip=New%20Ipod%20Shuffle%20Like%20New">Ipod Shuffle</a></span><br/>
-                        <span>Current Bid: <span class="money">$59.99</span></span><br/>
+                        <span><a href="product.php?image=http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png&price=59.99&non_profit=Feeding%20America&item_name=iPod%20Shuffle&descrip=New%20Ipod%20Shuffle%20Like%20New">Ipad</a></span><br/>
+                        <span>Current Bid: <span class="money">$89.99</span></span><br/>
                         <span>Benefits: <a href="#">Feeding America</a></span>
                     </div>
                 </div>

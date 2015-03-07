@@ -52,7 +52,7 @@
                             <li><a href="#">What does this mean?</a></li>
                         </ul>
                     </div><!-- /btn-group -->
-                    <input type="text" class="form-control" aria-label="..." placeholder="Dog Collars">
+                    <input id="search_bar" type="text" class="form-control" aria-label="..." placeholder="What Are You Looking For?">
                 </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
     </div>

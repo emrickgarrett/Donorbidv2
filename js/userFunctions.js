@@ -14,3 +14,14 @@ function charitySearch(){
 function causeSearch(){
     $("#search_type").html("Cause <span class='caret'></span>");
 }
+
+
+$(document).ready(function(){
+
+    $("#search_bar").keypress(function (e) {
+        if (e.which == 13) {
+            window.location.href = "search.php";
+        }
+    });
+
+});
