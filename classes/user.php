@@ -9,10 +9,10 @@
 class user {
 
     public $username = "Guest";
-    public $password = "";
-    public $email = "";
-    public $address = "";
-    public $cardID = -1;
+    private $password = "";
+    private $email = "";
+    private $address = "";
+    private $cardID = -1;
     public $charities = array();
 
     function user(){
@@ -24,4 +24,47 @@ class user {
         echo "Destroyed noob";
     }
 
+    function getUsername(){
+        return $this -> username;
+    }
+
+    function setUsername($username){
+        $this -> username = $username;
+    }
+
+    function setPassword($password){
+        $this -> password = $password;
+    }
+
+    function getEmail(){
+        return $this -> email;
+    }
+
+    function setEmail($email){
+        $this -> email = $email;
+    }
+
+    function getAddress(){
+        return $this -> address;
+    }
+
+    function setAddress($address){
+        $this -> address = $address;
+    }
+
+    function getCard(){
+        //do query
+    }
+
+    function setCard($cardID){
+        $this -> cardID = $cardID;
+    }
+
+    function getCharities(){
+        return $this -> charities;
+    }
+
+    function setCharities($charities){
+        $this -> charities = $charities;
+    }
 }

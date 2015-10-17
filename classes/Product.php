@@ -18,9 +18,49 @@ class Product {
     function Product(){
 
     }
-    
+
     function __destruct(){
 
+    }
+
+    function getSeller(){
+        return $this -> seller;
+    }
+
+    function setSeller($seller){
+        $this -> seller = $seller;
+    }
+
+    function getAmt(){
+        return $this -> amt;
+    }
+
+    function setAmt($amt){
+        $this -> amt = $amt;
+    }
+
+    function getName(){
+        return $this -> name;
+    }
+
+    function setName($name){
+        $this -> name = $name;
+    }
+
+    function getDesc(){
+        return $this -> desc;
+    }
+
+    function setDesc($desc){
+        $this -> desc = $desc;
+    }
+
+    function getCharity(){
+        return $this -> charity;
+    }
+
+    function setCharity($charity){
+        $this -> charity = $charity;
     }
 
 

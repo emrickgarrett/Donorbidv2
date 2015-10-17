@@ -18,6 +18,38 @@ class Charity {
     }
 
     function __destruct(){
-        
+
+    }
+
+    function getName(){
+        return $this -> name;
+    }
+
+    function setName($name){
+        $this -> name = $name;
+    }
+
+    function getDesc(){
+        return $this -> desc;
+    }
+
+    function setDesc($desc){
+        return $this -> $desc;
+    }
+
+    function getDollars(){
+        return $this -> $dollars;
+    }
+
+    function setDollars($dollars){
+        $this -> dollars = $dollars;
+    }
+
+    function getCauses(){
+        return $this -> causes;
+    }
+
+    function setCauses($causes){
+        $this -> causes = $causes;
     }
 }
