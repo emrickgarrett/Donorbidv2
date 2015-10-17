@@ -14,6 +14,7 @@ class user {
     private $address = "";
     private $cardID = -1;
     public $charities = array();
+    public $image = "";
 
     function user(){
 
@@ -66,5 +67,13 @@ class user {
 
     function setCharities($charities){
         $this -> charities = $charities;
+    }
+
+    function getImage(){
+        return $this -> image;
+    }
+
+    function setImage($image){
+        $this -> image = $image;
     }
 }
