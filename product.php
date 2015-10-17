@@ -90,16 +90,19 @@ if($image === '')
                 </div>
                 <div class="col-lg-7" style="margin-left:6em;">
                     <div class="row">
-                        <div class="col-lg-3" id="user_descrip">
-                            <div id="img_round">
-                                <a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42"><img width="100px" height="100px" src="images/pam.jpg"/></a>
-                            </div>
-                            <div style="text-align:center;margin-left:-1.5em;">
-                                <span id="username"><a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42">swagyolo42</a></span>
+                        <div  id="user_descrip" style=float:left;">
+                            <div style="text-align:center;">
+                                <div id="img_round" >
+                                    <a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42"><img width="100px" height="100px" src="images/pam.jpg"/></a>
+                                <br/>
+                                <span style="text-align:center;margin-left:-1.5em;">
+                                    <span id="username"><a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42">swagyolo42</a></span>
 
+                                </span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4" style="margin-top:.5em;">
+                        <div style="margin-top:.5em;float:left;margin-left:2em;">
                             <span style="font-size:1.5em;font-weight:bold;margin-left:-1em;">I Support...</span>
                             <ul style="display:inline;margin-left:-.5em;margin-top:-1em;">
                                 <li style="margin-bottom:.5em;"><a href="#">SPCA</a></li>
@@ -108,17 +111,18 @@ if($image === '')
                             </ul>
                         </div>
                     </div>
+                    <div class="row">
+                        <div  id="non_profit_descrip">
+                            <span style="display:block;font-size:2em;"><?php echo $non_profit;?></span>
+                            <p><?php echo $non_profit?>; is a Non Profit Organization that cares deeply about its' cause. It is the leading
+                            non profit in its' sector for innovation, and is currently on track to meet it's monthly goal of $1,000,000 raised through
+                            DonorBid.com With your help, <?php echo $non_profit;?> will be able to benefit the community and all of it's members.</p>
 
-                    <div  id="non_profit_descrip">
-                        <span style="display:block;font-size:2em;"><?php echo $non_profit;?></span>
-                        <p><?php echo $non_profit?>; is a Non Profit Organization that cares deeply about its' cause. It is the leading
-                        non profit in its' sector for innovation, and is currently on track to meet it's monthly goal of $1,000,000 raised through
-                        DonorBid.com With your help, <?php echo $non_profit;?> will be able to benefit the community and all of it's members.</p>
-
-                        <div class="input-group" id="pay" style="max-width:150px;">
-                            <input id="donate_amt" type="text" class="form-control" placeholder="$0.00" min="<?php echo $price; ?>">
-                            <div class="input-group-btn">
-                                <button id="bid_button" type="button" class="btn btn-large btn-primary">Bid!</button>
+                            <div class="input-group" id="pay" style="max-width:150px;">
+                                <input id="donate_amt" type="text" class="form-control" placeholder="$0.00" min="<?php echo $price; ?>">
+                                <div class="input-group-btn">
+                                    <button id="bid_button" type="button" class="btn btn-large btn-primary">Bid!</button>
+                                </div>
                             </div>
                         </div>
                     </div>
