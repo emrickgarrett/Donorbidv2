@@ -8,6 +8,7 @@
 
 class Item {
 
+    public $id = -1;
     public $seller = NULL;
     public $amt = 0.00;
     public $name = "default";
@@ -17,6 +18,7 @@ class Item {
 
 
     function Item(){
+        $this -> id = -1;
         $this -> seller = new User();
         $this -> amt = 10.00;
         $this -> desc = "Lorim Ipsum Default default default ipsum lorem lipsum flipsum burger hamger heueueue default";
@@ -26,6 +28,14 @@ class Item {
 
     function __destruct(){
 
+    }
+
+    function getID(){
+        return $this -> id;
+    }
+
+    function setID($id){
+        $this -> id = $id;
     }
 
     function getSeller(){

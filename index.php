@@ -80,21 +80,21 @@ require("classes/Donorbid.php");
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[0] -> getImage(); ?>" alt="ipod"/>
+                <a href="product.php?id=<?php echo $db -> getTopItems()[0] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[0] -> getImage(); ?>" alt="ipod"/></a>
                 <div>
                     <p><?php echo $db -> getTopItems()[0] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[0] -> getAmt(); ?></p>
                     <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[0] -> getCharity(); ?></a></p>
                 </div>
             </div>
             <div class="col-lg-4" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[1] -> getImage(); ?>" alt="ipod"/>
+                <a href="product.php?id=<?php echo $db -> getTopItems()[1] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[1] -> getImage(); ?>" alt="ipod"/></a>
                 <div>
                     <p><?php echo $db -> getTopItems()[1] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[1] -> getAmt(); ?></p>
                     <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[1] -> getCharity(); ?></a></p>
                 </div>
             </div>
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[2] -> getImage(); ?>" alt="ipod"/>
+                <a href="product.php?id=<?php echo $db -> getTopItems()[2] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[2] -> getImage(); ?>" alt="ipod"/></a>
                 <div>
                     <p><?php echo $db -> getTopItems()[2] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[2] -> getAmt(); ?></p>
                     <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[2] -> getCharity(); ?></a></p>

@@ -179,3 +179,18 @@ body{
     margin-bottom:-1.2em;
     margin-right:-47em;
 }
+
+/* Login Styles */
+
+#login_container{
+    margin:auto;
+    max-width:500px;
+    width:100%;
+    border: 1px solid black;
+    border-radius:10px;
+    text-align:center;
+    padding:10px 10px 20px 20px;
+}
+
+
+/* End Login Styles */
