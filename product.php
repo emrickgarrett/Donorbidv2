@@ -40,6 +40,8 @@ if($image === '')
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/dist/sweetalert.min.js"></script>
 
     <link rel="stylesheet" href="css/donorbid.css">
     <script type="text/javascript" src="js/userFunctions.js"></script>
@@ -153,7 +155,9 @@ if($image === '')
 
                 var price = $("#donate_amt").val();
 
-                if(confirm("Are you sure you want to bid on this for " + price + "?")){
+                swal({   title: "Are you sure?",   text: "Are you sure you want to bid on this for $" + price + "?",   type: "warning",   showCancelButton: true,
+                    confirmButtonColor: "#AEDEF4",   confirmButtonText: "Yes, buy it!",   closeOnConfirm: false },
+                    function(){   swal("Purchased!", "You will now be redirected!", "success");
 
 
                     var image = "<?php echo $image;?>";
@@ -162,9 +166,7 @@ if($image === '')
                     window.location.href = "winner.php?image=" + image + "&name=" + item_name + "&charity=" + charity +"&price=" + price;
 
 
-                }else{
-
-                }
+                    });
 
             });
 
