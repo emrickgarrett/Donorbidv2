@@ -32,7 +32,7 @@
 <?php require("dry/header-logo.php"); ?>
 
 <div id="login_container">
-    <span class="header-text">Log-in</span>
+    <span class="header-text">Create Account</span>
     <br/>
     <br/>
     <div id="login_credentials">
@@ -46,9 +46,23 @@
             <input id="password" type="password" class="form-control" placeholder="*******" aria-describedby="password">
         </div>
         <br/><br/>
+        <div class="input-group" style="margin-bottom:.5em;" >
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input id="email" type="email" class="form-control" placeholder="example@example.com" aria-describedby="email">
+        </div>
+        <div class="input-group" style="margin-bottom:.5em;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></span>
+            <input id="card-number" type="number" class="form-control" placeholder="5555555555555555" aria-describedby="credit-card">
+            <span class="input-group-addon">CVV</span>
+            <input id="cvv" type="number" class="form-control" placeholder="555" aria-describedby="credit-card">
+        </div>
+        <div class="input-group" style="margin-bottom:.5em;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+            <input id="address" type="text" class="form-control" placeholder="123 example road, Germantown OH 45555">
+        </div>
         <div>
-            <button id="login-button" type="button" class="button" style="float:left;">Log In</button>
-            <span style="float:right;">No account? Sign up <a href="createAccount.php">here!</a></span>
+            <button id="create_account-button" type="button" class="button" style="float:left;">Create Account</button>
+            <span style="float:right;">Already have account? Login in <a href="login.php">here!</a></span>
             <br/>
             <br/>
         </div>
@@ -57,12 +71,12 @@
 
 </div>
 <script type="text/javascript">
-$("#login-button").click(function() {
+$("#create_account-button").click(function() {
 
     var username = $("#username").value;
     var password = $("#password").value;
-
-    //add to db and login
+    
+    //create account and login
 
     window.location.href="index.php";
 

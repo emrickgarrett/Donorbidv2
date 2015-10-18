@@ -54,15 +54,6 @@ require_once("classes/Donorbid.php");
                 </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
     </div>
-
-
-    <!-- scripts -->
-    <script type="text/javascript">
-        $("#logout").click(function(){
-            window.location.href = "logout.php";
-        });
-
-    </script>
 </div>
 
 

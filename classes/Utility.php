@@ -18,8 +18,8 @@ class Utility {
             "<li><a href=''>Global Stats</a></li>" .
             "<li><a id='logout' href='#'>Log Out</a></li>";
         }else{
-            return "<li><a href='#'>Create Account</a></li>" .
-                "<li><a href='#'>Log In</a></li>";
+            return "<li><a href='createAccount.php'>Create Account</a></li>" .
+                "<li><a href='login.php' id='login'>Log In</a></li>";
         }
     }
 
