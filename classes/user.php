@@ -6,7 +6,7 @@
  * Time: 11:34 AM
  */
 
-class user {
+class User {
 
     public $username = "Guest";
     private $password = "";
@@ -16,13 +16,17 @@ class user {
     public $charities = array();
     public $image = "";
 
-    function user(){
-
+    function User(){
+        //default
+        $this -> email = "default@default.com";
+        $this -> address = "1123 default rd, default, default, 55555";
+        $this -> charities = array("charity1", "charity2", "charity3");
+        $this -> image = "images/pam.jpg";
     }
 
 
     function __destruct(){
-        echo "Destroyed noob";
+
     }
 
     function getUsername(){
@@ -76,4 +80,9 @@ class user {
     function setImage($image){
         $this -> image = $image;
     }
+
+    function storeUser(){
+        $_SESSION["user"] = $this;
+    }
+
 }

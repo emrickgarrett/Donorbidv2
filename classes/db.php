@@ -8,7 +8,7 @@
 
 class db{
 
-    public $db_name = "nil";
+    public $db_name = "donorbiddb";
     public $conn = NULL;
 
     function db(){
@@ -19,9 +19,17 @@ class db{
         //close connection
     }
 
+    function connect(){
+
+    }
+
+    function disconnect(){
+
+    }
+
     /*** Functions to create for functionality for the site... */
     function getUser(){
-
+        return new User();
     }
 
     function createUser(){
@@ -33,11 +41,11 @@ class db{
     }
 
     function getProduct(){
-
+        return new Item();
     }
 
     function getCharity(){
-
+        return new Charity();
     }
 
     function createCharity(){
@@ -49,7 +57,7 @@ class db{
     }
 
     function getItems(){
-
+        return array(new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item());
     }
 
     function sellItem(){
@@ -73,7 +81,18 @@ class db{
     }
 
     function getCause(){
+        return "watch me nay nay";
+    }
 
+    function getTopItems(){
+        $item1 = new Item();
+        $item1 -> image = "images/default1.jpg";
+        $item1 -> name = "default1";
+
+        $item3 = new Item();
+        $item3 -> image = "images/default3.jpg";
+        $item3 -> name = "default3";
+        return array($item1, new Item(), $item3);
     }
 
     /*** End Query Functions ***/

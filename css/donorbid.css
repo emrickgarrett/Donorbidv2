@@ -42,6 +42,7 @@ body{
 #myCarousel{
     width:90%;
     max-height:600px;
+    max-width:1400px;
     font-size:3.5em;
     color:white;
     margin-left:auto;

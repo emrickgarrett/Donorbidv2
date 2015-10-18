@@ -14,7 +14,8 @@ class Charity {
     public $causes = array();
 
     function Charity(){
-
+        $this -> dollars = 100.00;
+        $this -> causes = array("twerking", "jerking", "smerking");
     }
 
     function __destruct(){

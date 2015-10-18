@@ -6,6 +6,8 @@
  * Time: 19:38
  */
 
+require_once("classes/Donorbid.php");
+
 ?>
 
 <!-- Stuff goes here -->
@@ -21,11 +23,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span style="font-size:1.5em;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="profile.php?full_name=Dwight%20Danger&image=images/creep.jpg&username=dwight72">Profile</a></li>
-                            <li><a href="seller.php">Sold Items <span style="font-size:.8em;" class="badge">1</span></a></li>
-                            <li><a href="#">Auction Item</a></li>
-                            <li><a href="#">Global Stats</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <?php echo $util -> getUserMenu(new User()); ?>
                         </ul>
                     </div>
             </div>
@@ -57,6 +55,14 @@
             </div><!-- /.col-lg-6 -->
     </div>
 
+
+    <!-- scripts -->
+    <script type="text/javascript">
+        $("#logout").click(function(){
+            window.location.href = "logout.php";
+        });
+
+    </script>
 </div>
 
 

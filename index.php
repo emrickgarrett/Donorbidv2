@@ -5,6 +5,7 @@
  * Date: 3/6/2015
  * Time: 19:39
  */
+require("classes/Donorbid.php");
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -79,24 +80,24 @@
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="https://www.apple.com/ipod-shuffle/images/hero1.jpg" alt="ipod"/>
+                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[0] -> getImage(); ?>" alt="ipod"/>
                 <div>
-                    <p>Ipod Shuffle Starts At: $59.99</p>
-                    <p>5% of Proceeds Go to <a href="#">Feeding America</a></p>
+                    <p><?php echo $db -> getTopItems()[0] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[0] -> getAmt(); ?></p>
+                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[0] -> getCharity(); ?></a></p>
                 </div>
             </div>
             <div class="col-lg-4" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="http://d31snyb1jsf9xb.cloudfront.net/services/image.aspx/media/images-product/dog-collar-kit-44710-03.jpg" alt="collar"/>
+                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[1] -> getImage(); ?>" alt="ipod"/>
                 <div>
-                    <p>Premium dog Collar Starts At: $19.99</p>
-                    <p>5% of Proceeds Go to <a href="#">SPCA</a></p>
+                    <p><?php echo $db -> getTopItems()[1] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[1] -> getAmt(); ?></p>
+                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[1] -> getCharity(); ?></a></p>
                 </div>
             </div>
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <img width="250px" height="150px" src="http://thepoliticalcarnival.net/wp-content/uploads/2012/07/dog-whistle.jpg" alt="ipod"/>
+                <img width="250px" height="150px" src="<?php echo $db -> getTopItems()[2] -> getImage(); ?>" alt="ipod"/>
                 <div>
-                    <p>Dog Whistle Starts At: $39.99</p>
-                    <p>5% of Proceeds Go to <a href="#">Save The Animals Foundation</a></p>
+                    <p><?php echo $db -> getTopItems()[2] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[2] -> getAmt(); ?></p>
+                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getTopItems()[2] -> getCharity(); ?></a></p>
                 </div>
             </div>
             <div class="col-lg-1"></div>
