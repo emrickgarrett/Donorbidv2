@@ -5,24 +5,19 @@
  * Date: 3/7/2015
  * Time: 00:14
  */
+require_once("classes/Donorbid.php");
 
-$item_name = $_GET['item_name'];
-$price = $_GET['price'];
-$descrip = $_GET['descrip'];
-$non_profit = $_GET['non_profit'];
-$image = $_GET['image'];
 
-if($item_name === '')
-    $item_name = 'ipod';
-if($price === '')
-    $price = '19.99';
-if($descrip === '')
-    $descrip = "Great Condition. Hardly Used, Works Like New.";
-if($non_profit === '')
-    $non_profit = "SPCA";
-if($image === '')
-    $image = 'OOPS!';
+$id = $_GET['id'];
 
+$product = $db -> getProduct($id);
+$charity = $db -> getCharity($product -> getCharity());
+$seller = $db -> getUser($product -> getSeller());
+
+
+$top_charity1 = $db -> getCharity($seller -> getCharities()[0]);
+$top_charity2 = $db -> getCharity($seller -> getCharities()[1]);
+$top_charity3 = $db -> getCharity($seller -> getCharities()[2]);
 ?>
 
 <!DOCTYPE HTML>
@@ -83,11 +78,11 @@ if($image === '')
             <div class="row" style="margin-left:2em;margin-top:3em;">
                 <div class="col-lg-4" id="product">
                     <div style="text-align:center;">
-                        <img style="width:350px;height:250px;" src="<?php echo $image;?>" alt="Donate_Image"/>
-                        <span style="font-size:1.5em;display:block;"><?php echo $item_name;?></span>
-                        <span style="display:block;">Current Bidding Price: $<span style="color:red;"><?php echo $price;?></span></span>
-                        <span style="display:block;"><?php echo $descrip; ?></span>
-                        <span style="font-weight:bold;font-size:1.2em;">Benefits: <a href="#"><?php echo $non_profit; ?></a></span>
+                        <img style="width:350px;height:250px;" src="<?php echo $product -> getImage();?>" alt="Donate_Image"/>
+                        <span style="font-size:1.5em;display:block;"><?php echo $product -> getName();?></span>
+                        <span style="display:block;">Current Bidding Price: $<span style="color:red;"><?php echo $product -> amt;?></span></span>
+                        <span style="display:block;"><?php echo $product -> getShortDesc(); ?></span>
+                        <span style="font-weight:bold;font-size:1.2em;">Benefits: <a href="viewcharity.php?id=<?php echo $charity -> getId();?>"><?php echo $charity -> getName(); ?></a></span>
                     </div>
                 </div>
                 <div class="col-lg-7" style="margin-left:6em;">
@@ -95,10 +90,10 @@ if($image === '')
                         <div  id="user_descrip" style=float:left;">
                             <div style="text-align:center;">
                                 <div id="img_round" >
-                                    <a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42"><img width="100px" height="100px" src="images/pam.jpg"/></a>
+                                    <a href="profile.php?id=<?php echo $seller -> getId();?>"><img width="100px" height="100px" src="<?php echo $seller -> getImage(); ?>"/></a>
                                 <br/>
                                 <span style="text-align:center;margin-left:-1.5em;">
-                                    <span id="username"><a href="profile.php?full_name=Pam%20Powers&image=images/pam.jpg&username=swagyolo42">swagyolo42</a></span>
+                                    <span id="username"><a href="profile.php?id=<?php echo $seller -> getId(); ?>"><?php echo $seller -> getUsername(); ?></a></span>
 
                                 </span>
                                 </div>
@@ -107,21 +102,19 @@ if($image === '')
                         <div style="margin-top:.5em;float:left;margin-left:2em;">
                             <span style="font-size:1.5em;font-weight:bold;margin-left:-1em;">I Support...</span>
                             <ul style="display:inline;margin-left:-.5em;margin-top:-1em;">
-                                <li style="margin-bottom:.5em;"><a href="#">SPCA</a></li>
-                                <li style="margin-bottom:.5em;"><a href="#">Feeding America</a></li>
-                                <li><a href="#">The Red Cross</a></li>
+                                <li style="margin-bottom:.5em;"><a href="viewcharity.php?id=<?php echo $top_charity1 -> getId();?>"><?php echo $top_charity1 -> getName(); ?></a></li>
+                                <li style="margin-bottom:.5em;"><a href="viewcharity.php?id=<?php echo $top_charity2 -> getId();?>"><?php echo $top_charity2 -> getName(); ?></a></li>
+                                <li><a href="viewcharity.php?id=<?php echo $top_charity3 -> getId();?>"><?php echo $top_charity3 -> getName(); ?></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="row">
                         <div  id="non_profit_descrip">
-                            <span style="display:block;font-size:2em;"><?php echo $non_profit;?></span>
-                            <p><?php echo $non_profit?>; is a Non Profit Organization that cares deeply about its' cause. It is the leading
-                            non profit in its' sector for innovation, and is currently on track to meet it's monthly goal of $1,000,000 raised through
-                            DonorBid.com With your help, <?php echo $non_profit;?> will be able to benefit the community and all of it's members.</p>
+                            <span style="display:block;font-size:2em;"><?php echo $charity -> getName();?></span>
+                            <p><a href='viewcharity.php?id=<?php echo $charity -> getId();?>'><?php echo $charity -> getName()?></a>: <?php echo $charity -> getDesc(); ?></p>
 
                             <div class="input-group" id="pay" style="max-width:150px;">
-                                <input id="donate_amt" type="text" class="form-control" placeholder="$0.00" min="<?php echo $price; ?>">
+                                <input id="donate_amt" type="text" class="form-control" placeholder="$0.00" min="<?php echo $product -> getAmt(); ?>">
                                 <div class="input-group-btn">
                                     <button id="bid_button" type="button" class="btn btn-large btn-primary">Bid!</button>
                                 </div>
@@ -134,9 +127,7 @@ if($image === '')
             <hr/>
             <div id="product_description">
                 <h3>Description</h3>
-                <p>This is lightly used. I got it as a birthday present last year and haven't had a need for it, so I'm trying to sell it to raise money
-                for <?php echo $non_profit; ?>. It works like new, and only has a few slight scratches here and there. I am looking to donate a large portion
-                     of the proceeds to <?php echo $non_profit; ?>, so I'm hoping you can help me out! If you have any questions feel free to email me at Anon7588@donorbid.com </p>
+                <p><?php echo $product -> getLongDesc(); ?></p>
             </div>
 
 

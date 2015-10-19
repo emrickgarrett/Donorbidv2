@@ -28,8 +28,11 @@ class db{
     }
 
     /*** Functions to create for functionality for the site... */
-    function getUser(){
-        return new User();
+    function getUser($id){
+        $temp = new User();
+        $temp -> username = "swagyolo420";
+        $temp -> setFullName("Pam Powers");
+        return $temp;
     }
 
     function createUser(){
@@ -40,12 +43,25 @@ class db{
 
     }
 
-    function getProduct(){
+    function getProduct($id){
+
+        //Get item from db
+        $temp = new Item();
+        $temp -> amt = 15.00;
+        $temp -> name = "Example Item";
+        $temp -> desc = "This is an example description";
+        $temp -> image = "default1.jpg";
+        $temp -> charity = 1;
+        $temp -> seller = 1;
         return new Item();
     }
 
     function getCharity(){
-        return new Charity();
+        $temp = new Charity();
+        $temp -> name = "Feeding America";
+        $temp -> desc = "This is an example description of a Charity that will be replaced by actual descriptions.";
+        $temp -> dollars = 127.18;
+        return $temp;
     }
 
     function createCharity(){

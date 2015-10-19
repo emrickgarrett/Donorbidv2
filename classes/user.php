@@ -8,8 +8,10 @@
 
 class User {
 
+    private $id = -1;
     public $username = "Guest";
     private $password = "";
+    private $full_name = "";
     private $email = "";
     private $address = "";
     private $cardID = -1;
@@ -18,6 +20,7 @@ class User {
 
     function User(){
         //default
+        $this -> full_name = "Pam Powers";
         $this -> email = "default@default.com";
         $this -> address = "1123 default rd, default, default, 55555";
         $this -> charities = array("charity1", "charity2", "charity3");
@@ -29,12 +32,28 @@ class User {
 
     }
 
+    function getId(){
+        return $this -> id;
+    }
+
+    function setId($id){
+        $this -> id = $id;
+    }
+
     function getUsername(){
         return $this -> username;
     }
 
     function setUsername($username){
         $this -> username = $username;
+    }
+
+    function getFullName(){
+        return $this -> full_name;
+    }
+
+    function setFullName($name){
+        $this -> full_name = $name;
     }
 
     function setPassword($password){

@@ -8,6 +8,7 @@
 
 class Charity {
 
+    public $id = -1;
     public $name = "default";
     public $desc = "default";
     public $dollars = 0.00;
@@ -20,6 +21,14 @@ class Charity {
 
     function __destruct(){
 
+    }
+
+    function getId(){
+        return $this -> id;
+    }
+
+    function setId($id){
+        $this -> id = $id;
     }
 
     function getName(){

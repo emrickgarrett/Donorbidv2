@@ -12,7 +12,8 @@ class Item {
     public $seller = NULL;
     public $amt = 0.00;
     public $name = "default";
-    public $desc = NULL;
+    public $short_desc = NULL;
+    public $long_desc = NULL;
     public $charity = NULL;
     public $image = "images/default1.png";
 
@@ -21,8 +22,9 @@ class Item {
         $this -> id = -1;
         $this -> seller = new User();
         $this -> amt = 10.00;
-        $this -> desc = "Lorim Ipsum Default default default ipsum lorem lipsum flipsum burger hamger heueueue default";
-        $this -> charity = "Humane Society";
+        $this -> short_desc = "Like new";
+        $this -> long_desc = "Lorim Ipsum Default default default ipsum lorem lipsum flipsum burger hamger heueueue default";
+        $this -> charity = 1;
 
     }
 
@@ -62,12 +64,20 @@ class Item {
         $this -> name = $name;
     }
 
-    function getDesc(){
-        return $this -> desc;
+    function getShortDesc(){
+        return $this -> short_desc;
     }
 
-    function setDesc($desc){
-        $this -> desc = $desc;
+    function setShortDesc($desc){
+        $this -> short_desc = $desc;
+    }
+
+    function getLongDesc(){
+        return $this -> long_desc;
+    }
+
+    function setLongDesc($desc){
+        $this -> long_desc = $desc;
     }
 
     function getCharity(){
