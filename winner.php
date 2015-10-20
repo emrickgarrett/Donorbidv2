@@ -6,11 +6,27 @@
  * Time: 06:10
  */
 
-$image = $_GET['image'];
-$item_name = $_GET['name'];
-$charity = $_GET['charity'];
-$price = $_GET['price'];
+require_once("classes/Donorbid.php");
 
+$id = $_GET['id'];
+
+$product = $db -> getProduct($id);
+$charity = $db -> getCharity($product -> getCharity());
+$seller = $db -> getUser($product -> getSeller());
+$user = $_SESSION['user'];
+
+if(!$util -> isValidUser($user)){
+    //Disabled until login is working!
+    //header( 'Location: login.php' ) ;
+}else{
+    //for temporary debuggin
+    $user = new User();
+}
+
+
+$user = new User();
+//temporary here
+$seller-> setImage("images/creep.jpg");
 ?>
 
 
@@ -68,7 +84,7 @@ $price = $_GET['price'];
     <div class="col-lg-10" >
             <div class="row" style="margin-bottom:15em;">
                 <div class="col-lg-4" id="buyer_info">
-                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="250px" src="images/pam.jpg" alt="profile_pic"/><br/>
+                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="250px" src="<?php echo $user -> getImage();?>" alt="profile_pic"/><br/>
                     <span>5% goes towards</span>
 
                     <!-- Single button -->
@@ -84,21 +100,21 @@ $price = $_GET['price'];
                             <li><a href="#">Find Another One ></a></li>
                         </ul>
                     </div><br/>
-                    <span>Total towards your cause: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $price*.05;?>!</span></span>
+                    <span>Total towards your cause: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt() *.05;?>!</span></span>
 
                 </div>
                 <div class="col-lg-4" id="item_info">
                     <h3>Congratulations!</h3>
-                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="150px" src="<?php echo $image; ?>" alt="profile_pic"/><br/>
-                    <span><p>You Bought this <?php echo $item_name; ?> for <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $price; ?>!</p></span></span>
-                    <span><p>5% is taken as a Service Charge - <span style="color:red;">$<?php echo $price*.05;?></span></p></span>
+                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="150px" src="<?php echo $product -> getImage(); ?>" alt="profile_pic"/><br/>
+                    <span><p>You Bought this <?php echo $product -> getName(); ?> for <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt(); ?>!</span></p></span>
+                    <span><p>5% is taken as a Service Charge - <span style="color:red;">$<?php echo $product -> getAmt()*.05;?></span></p></span>
                 </div>
                 <div class="col-lg-4" id="seller_info">
-                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="250px" src="images/creep.jpg" alt="profile_pic"/><br/>
-                    <span>5% Towards <?php echo $charity; ?>: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $price*.05;?>!</span></span><br/>
-                    <span>85% for Seller <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $price*.85;?>!</span></span>
+                    <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="250px" src="<?php echo $seller -> getImage();?>" alt="profile_pic"/><br/>
+                    <span>5% Towards <?php echo $charity -> getName(); ?>: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt()*.05;?>!</span></span><br/>
+                    <span>85% for Seller <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt()*.85;?>!</span></span>
                     <hr style="margin:0;color:gray;"/>
-                    <span>-2.75% for Credit Card Processing: <span style="color:red;">$<?php echo $price*.0275;?>!</span></span>
+                    <span>-2.75% for Credit Card Processing: <span style="color:red;">$<?php echo $product -> getAmt()*.0275;?>!</span></span>
                 </div>
             </div>
         <hr style="color:black;"/>
