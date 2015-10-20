@@ -45,6 +45,8 @@ $seller-> setImage("images/creep.jpg");
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="sweetalert/dist/sweetalert.css">
+    <script type="text/javascript" src="sweetalert/dist/sweetalert.min.js"></script>
 
     <link rel="stylesheet" href="css/donorbid.css">
     <script type="text/javascript" src="js/userFunctions.js"></script>
@@ -95,7 +97,7 @@ $seller-> setImage("images/creep.jpg");
                         <ul class="dropdown-menu" role="menu">
                             <?php echo $user -> printCharityMenu();?>
                             <li class="divider"></li>
-                            <li><a href="#">Find Another One ></a></li>
+                            <li><a href="#" id="find_another">Find Another One ></a></li>
                         </ul>
                     </div><br/>
                     <span>Total towards your cause: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt() *.05;?>!</span></span>
@@ -132,12 +134,28 @@ $seller-> setImage("images/creep.jpg");
     $(document).ready(function(){
 
         <?echo $user -> printCharityMenuClicks(); ?>
-
+        $("#find_another").click(function(){
+            //Bring up window to find a new charity (search bar perhaps?)
+            swal({   title: "Search Charity!",   text: "Enter the name of the charity:",   type: "input",   showCancelButton: true,   closeOnConfirm: false,
+                animation: "slide-from-top",   inputPlaceholder: "Feeding America" },
+                function(inputValue){
+                    if (inputValue === false) return false;
+                    if (inputValue === "") {
+                        swal.showInputError("You need name a charity!");
+                        return false
+                    }
+                    swal("Confirmed!", "You wrote: " + inputValue, "success"); });
+        });
 
         $("#confirm_button").click(function(){
-           alert("Your Order has been placed");
-           window.location.href="search.php";
-        });
+            swal({   title: "Are you sure?",   text: "Your Purchase Will Be Finalized!",
+                    type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Buy it!",   closeOnConfirm: false },
+                function(){
+                    swal("Confirmed!", "Your package will be delivered!", "success");
+                });
+        })
+
     });
 </script>
 
