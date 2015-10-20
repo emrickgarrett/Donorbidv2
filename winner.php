@@ -116,8 +116,10 @@ $seller-> setImage("images/creep.jpg");
                 </div>
             </div>
         <hr style="color:black;"/>
-        <input style="width:250px;float:left;" class="form-control" type="text" placeholder="Street"><input style="width:150px;" class="form-control" type="number" placeholder="Zip">
+        <input style="width:250px;float:left;margin-right:.5em;" class="form-control" type="text" placeholder="Street"><input style="width:100px;;" class="form-control" type="number" placeholder="Zip">
         <input style="width:250px;margin-top:1em;" class="form-control" type="tel" placeholder="Phone Number">
+        <input style="width:250px;float:left;margin-top:1em;margin-right:.5em;" class="form-control" type="number" placeholder="Credit Card #"><input style="width:75px;margin-top:1em;;" class="form-control" type="number" placeholder="CVC">
+        <input style="width:250px;margin-top:1em;" class="form-control" type="text" placeholder="Cardholder's Name">
 
         <button id="confirm_button" style="margin-top:1em;margin-bottom:5em;" class="btn btn-lg btn-success">Confirm</button>
     </div>
@@ -128,15 +130,9 @@ $seller-> setImage("images/creep.jpg");
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $("#spca_but").click(function(){
-           $("#non_profit_button_select").html("SPCA");
-        });
-        $("#freestore_but").click(function(){
-            $("#non_profit_button_select").html("Freestore Foodbank");
-        });
-        $("#red_cross_but").click(function(){
-            $("#non_profit_button_select").html("The Red Cross");
-        });
+
+        <?echo $user -> printCharityMenuClicks(); ?>
+
 
         $("#confirm_button").click(function(){
            alert("Your Order has been placed");

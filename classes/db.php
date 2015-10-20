@@ -61,6 +61,7 @@ class db{
         $temp -> name = "Feeding America";
         $temp -> desc = "This is an example description of a Charity that will be replaced by actual descriptions.";
         $temp -> dollars = 127.18;
+        $temp -> id = $id;
         return $temp;
     }
 

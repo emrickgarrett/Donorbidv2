@@ -150,6 +150,7 @@ $top_charity3 = $db -> getCharity($seller -> getCharities()[2]);
                     confirmButtonColor: "#AEDEF4",   confirmButtonText: "Yes, buy it!",   closeOnConfirm: false },
                     function(){   swal("Purchased!", "You will now be redirected!", "success");
 
+
                     window.location.href = "winner.php?id=<?php echo $product -> getID();?>";
 
 

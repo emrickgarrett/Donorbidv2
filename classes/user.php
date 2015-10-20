@@ -41,7 +41,24 @@ class User {
 
         for($i = 0; $i < sizeof($this -> charities); $i++){
             $charity = $this -> db -> getCharity($this -> charities[$i]);
-            $returnString .= "<li><a href='viewcharity.php?id=" . $charity -> getID() . "'>" . $charity -> getName() . "</a></li>";
+            $returnString .= "<li><a href='#' id='" . $charity -> getID() . "'>" . $charity -> getName() . "</a></li>";
+        }
+
+        return $returnString;
+        /*
+        <li><a id="spca_but">SPCA</a></li>
+        <li><a id="freestore_but">Free Store Foodbank</a></li>
+        <li><a id="red_cross_but">The Red Cross</a></li>
+        */
+    }
+
+    function printCharityMenuClicks(){
+
+        $returnString = "";
+
+        for($i = 0; $i < sizeof($this -> charities); $i++){
+            $charity = $this -> db -> getCharity($this -> charities[$i]);
+            $returnString .= "$('#" . $charity -> getId() . "').click(function(){\$('#non_profit_button_select').html('" . $charity -> getName() . "');});";
         }
 
         return $returnString;
