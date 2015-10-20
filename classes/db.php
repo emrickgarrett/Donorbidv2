@@ -56,7 +56,7 @@ class db{
         return new Item();
     }
 
-    function getCharity(){
+    function getCharity($id){
         $temp = new Charity();
         $temp -> name = "Feeding America";
         $temp -> desc = "This is an example description of a Charity that will be replaced by actual descriptions.";

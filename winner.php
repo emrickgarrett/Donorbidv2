@@ -93,9 +93,7 @@ $seller-> setImage("images/creep.jpg");
                             Select a Non Profit <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="spca_but">SPCA</a></li>
-                            <li><a id="freestore_but">Free Store Foodbank</a></li>
-                            <li><a id="red_cross_but">The Red Cross</a></li>
+                            <?php echo $user -> printCharityMenu();?>
                             <li class="divider"></li>
                             <li><a href="#">Find Another One ></a></li>
                         </ul>

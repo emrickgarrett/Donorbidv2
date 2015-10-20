@@ -6,6 +6,8 @@
  * Time: 11:34 AM
  */
 
+require_once("db.php");
+
 class User {
 
     private $id = -1;
@@ -17,20 +19,39 @@ class User {
     private $cardID = -1;
     public $charities = array();
     public $image = "";
+    private $db = NULL;
 
     function User(){
         //default
         $this -> full_name = "Pam Powers";
         $this -> email = "default@default.com";
         $this -> address = "1123 default rd, default, default, 55555";
-        $this -> charities = array("charity1", "charity2", "charity3");
+        $this -> charities = array(-1, -2, -3);
         $this -> image = "images/pam.jpg";
+        $this -> db = new db();
     }
-
 
     function __destruct(){
 
     }
+
+    function printCharityMenu(){
+
+        $returnString = "";
+
+        for($i = 0; $i < sizeof($this -> charities); $i++){
+            $charity = $this -> db -> getCharity($this -> charities[$i]);
+            $returnString .= "<li><a href='viewcharity.php?id=" . $charity -> getID() . "'>" . $charity -> getName() . "</a></li>";
+        }
+
+        return $returnString;
+    }
+
+
+
+
+
+
 
     function getId(){
         return $this -> id;
