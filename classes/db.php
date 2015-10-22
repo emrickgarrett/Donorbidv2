@@ -135,6 +135,22 @@ class db{
 
         return $temp;
     }
+
+    function printCharities($search){
+        $temp = "";
+
+
+
+        return $temp;
+    }
+
+    function printCauses($search){
+        $temp = "";
+
+
+
+        return $temp;
+    }
     /*** End Query Functions ***/
 
 

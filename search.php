@@ -11,6 +11,7 @@ require_once("classes/Donorbid.php");
 
 
 $search_query = $_GET["search"];
+$search_type = $_GET['type'];
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -66,7 +67,17 @@ $search_query = $_GET["search"];
         </div>
         <div id="items" class="col-lg-10">
             <!-- Items Go Here -->
-            <?php echo $db -> printItems($search_query); ?>
+            <?php
+            if($search_type === "Product") {
+                echo $db->printItems($search_query);
+            }
+            if($search_type === "Charity"){
+                echo $db -> printCharities($search_query);
+            }
+            if($search_type === "Cause"){
+                echo $db -> printCauses($search_query);
+            }
+            ?>
         </div>
     </div>
 </div>

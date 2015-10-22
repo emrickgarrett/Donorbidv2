@@ -41,7 +41,7 @@ require_once("classes/Donorbid.php");
             <div class="col-lg-6">
                 <div class="input-group" style="margin-left:-8em;">
                     <div class="input-group-btn"">
-                        <button type="button" id="search_type" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Product <span class="caret"></span></button>
+                        <button type="button" id="search_type" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span id='type'>Product</span> <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#" onclick="productSearch();">Product</a></li>
                             <li><a href="#" onclick="causeSearch();">Cause</a></li>
