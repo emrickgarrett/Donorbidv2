@@ -11,6 +11,7 @@ require_once("Item.php");
 require_once("User.php");
 require_once("db.php");
 require_once("Utility.php");
+require_once("Cause.php");
 
 $db = new db();
 $util = new Utility();

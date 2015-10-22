@@ -81,10 +81,6 @@ class db{
 
     }
 
-    function searchItem(){
-
-    }
-
     function searchCharity(){
 
     }
@@ -112,6 +108,33 @@ class db{
         return array($item1, new Item(), $item3);
     }
 
+
+    function printItems($search){
+        //Print stuff below
+        $temp = "";
+        //get Data
+        $number_of_dummies = 9;
+        $dummy_array = array(-1, -2, -3, -4, -5, -6, -7, -8, -9);
+        $count = 0;
+        for($i = 0; $i < $number_of_dummies/3; $i++){
+            $temp .= "<div class='row' style='text-align:center;margin-bottom:2em;'>";
+            for($j = 0; $j < 3 && $count < $number_of_dummies; $j++){
+                $item = $this -> getProduct($dummy_array[$count]);
+                $temp .= "<div class='col-lg-4'>";
+                    $temp .= "<a href='product.php?id=" . $item -> getID() ."'><img style='width:200px;height:150px;' src='" . $item -> getImage() . "' alt='" . $item -> getShortDesc() . "'/></a>";
+                    $temp .= "<div class='item-description'>";
+                        $temp .= "<span><a href='product.php?id=" . $item -> getID() . "'>" . $item -> getName() . "</a></span><br/>";
+                        $temp .= "<span>Current Bid: <span class='money'>$" . $item -> getAmt() . "</span></span><br/>";
+                        $temp .= "<span>Benefits: <a href='viewcharity.php?id=" . $item -> getCharity() . "'>" . $this -> getCharity($item -> getCharity()) -> getName() . "</a></span>";
+                    $temp .= "</div>";
+                $temp .= "</div>";
+                $count++;
+            }
+            $temp .= "</div>";
+        }
+
+        return $temp;
+    }
     /*** End Query Functions ***/
 
 

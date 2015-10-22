@@ -6,7 +6,11 @@
  * Time: 23:02
  */
 
+//Get list of items and print them below
+require_once("classes/Donorbid.php");
 
+
+$search_query = $_GET["search"];
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -62,85 +66,7 @@
         </div>
         <div id="items" class="col-lg-10">
             <!-- Items Go Here -->
-            <div class="row" style="text-align:center;margin-bottom:2em;">
-                <div class="col-lg-4">
-                    <a href="product.php?image=http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png&price=59.99&non_profit=Feeding%20America&item_name=iPad&descrip=New%20Ipad%20Like%20New"><img style="width:200px;height:150px;" src="http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="product.php?image=http://currys.cdn.dixons.com/css/themes/apple_ipad_air/img/ipad-intro.png&price=59.99&non_profit=Feeding%20America&item_name=iPod%20Shuffle&descrip=New%20Ipod%20Shuffle%20Like%20New">Ipad</a></span><br/>
-                        <span>Current Bid: <span class="money">$89.99</span></span><br/>
-                        <span>Benefits: <a href="#">Feeding America</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="product.php?image=http://d31snyb1jsf9xb.cloudfront.net/services/image.aspx/media/images-product/dog-collar-kit-44710-03.jpg&price=19.99&non_profit=SPCA&item_name=Dog%20Collar&descrip=New%20Dog%20Collar%20Like%20New"><img style="width:200px;height:150px;" src="http://d31snyb1jsf9xb.cloudfront.net/services/image.aspx/media/images-product/dog-collar-kit-44710-03.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="product.php?image=http://d31snyb1jsf9xb.cloudfront.net/services/image.aspx/media/images-product/dog-collar-kit-44710-03.jpg&price=19.99&non_profit=SPCA&item_name=Dog%20Collar&descrip=New%20Dog%20Collar%20Like%20New">Premium Dog Collar</a></span><br/>
-                        <span>Current Bid: <span class="money">$19.99</span></span><br/>
-                        <span>Benefits: <a href="#">SPCA</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="product.php?image=http://thepoliticalcarnival.net/wp-content/uploads/2012/07/dog-whistle.jpg&price=39.99&non_profit=Save%20The%20Animals%20Foundation&item_name=Dog%20Whistle&descrip=New%20Dog%20Whistle%20Slightly%20Used"><img style="width:200px;height:150px;" src="http://thepoliticalcarnival.net/wp-content/uploads/2012/07/dog-whistle.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="product.php?image=http://thepoliticalcarnival.net/wp-content/uploads/2012/07/dog-whistle.jpg&price=39.99&non_profit=Save%20The%20Animals%20Foundation&item_name=Dog%20Whistle&descrip=New%20Dog%20Whistle%20Slightly%20Used">Dog Whistle</a></span><br/>
-                        <span>Current Bid: <span class="money">$39.99</span></span><br/>
-                        <span>Benefits: <a href="#">Save The Animals Foundation</a></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="text-align:center;margin-bottom:2em;">
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://images.wisegeek.com/black-desktop-computer.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">Desktop Computer</a></span><br/>
-                        <span>Current Bid: <span class="money">$449.99</span></span><br/>
-                        <span>Benefits: <a href="#">ALS Foundation</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://www.rhodyoysters.com/wp-content/uploads/wp-checkout/images/gift-card-1370463543.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">$50 Gift Card</a></span><br/>
-                        <span>Current Bid: <span class="money">$29.99</span></span><br/>
-                        <span>Benefits: <a href="#">GreenPeace</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://ogio.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/r/e/renegade_black_2.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">Backpack</a></span><br/>
-                        <span>Current Bid: <span class="money">$54.99</span></span><br/>
-                        <span>Benefits: <a href="#">Red Cross</a></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="text-align:center;margin-bottom:2em;">
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://media.engadget.com/img/product/25/k1p/blackberry-curve-9300-29g1-800.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">Blackberry Device</a></span><br/>
-                        <span>Current Bid: <span class="money">$149.00</span></span><br/>
-                        <span>Benefits: <a href="#">C3DC</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://cincinnati.reds.mlb.com/cin/images/ticketing/y2009/bargains_tickets.gif" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">Cincinnati Reds Tickets</a></span><br/>
-                        <span>Current Bid: <span class="money">$4.99</span></span><br/>
-                        <span>Benefits: <a href="#">Cincinnati Zoo</a></span>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img style="width:200px;height:150px;" src="http://upload.wikimedia.org/wikipedia/commons/c/c1/Carnival-Freedom-Cruise-Ship.jpg" alt="ipod"/></a>
-                    <div class="item-description">
-                        <span><a href="#">Two Cruise Tickets</a></span><br/>
-                        <span>Current Bid: <span class="money">$499.98</span></span><br/>
-                        <span>Benefits: <a href="#">Wildlife Conservation Society</a></span>
-                    </div>
-                </div>
-            </div>
+            <?php echo $db -> printItems($search_query); ?>
         </div>
     </div>
 </div>

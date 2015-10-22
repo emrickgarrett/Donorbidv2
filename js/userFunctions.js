@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     $("#search_bar").keypress(function (e) {
         if (e.which == 13) {
-            window.location.href = "search.php";
+            window.location.href = "search.php?search=" + $("#search_bar").val();
         }
     });
 

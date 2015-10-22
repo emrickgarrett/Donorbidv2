@@ -153,6 +153,7 @@ $seller-> setImage("images/creep.jpg");
                 confirmButtonText: "Yes, Buy it!",   closeOnConfirm: false },
                 function(){
                     swal("Confirmed!", "Your package will be delivered!", "success");
+                    window.location.href="search.php";
                 });
         })
 
