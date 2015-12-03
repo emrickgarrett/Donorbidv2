@@ -9,6 +9,7 @@
 require_once("classes/Donorbid.php");
 
 $id = $_GET['id'];
+$amt = $_GET['amt'];
 
 $product = $db -> getProduct($id);
 
@@ -112,21 +113,21 @@ $seller-> setImage("images/creep.jpg");
                             <li><a href="#" id="find_another">Find Another One ></a></li>
                         </ul>
                     </div><br/>
-                    <span>Total towards your cause: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt() *.05;?>!</span></span>
+                    <span>Total towards your cause: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $amt *.05;?>!</span></span>
 
                 </div>
                 <div class="col-lg-4" id="item_info">
                     <h3>Congratulations!</h3>
                     <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="150px" src="<?php echo $product -> getImage(); ?>" alt="profile_pic"/><br/>
-                    <span><p>You Bought this <?php echo $product -> getName(); ?> for <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt(); ?>!</span></p></span>
-                    <span><p>5% is taken as a Service Charge - <span style="color:red;">$<?php echo $product -> getAmt()*.05;?></span></p></span>
+                    <span><p>You Bought this <?php echo $product -> getName(); ?> for <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $amt; ?>!</span></p></span>
+                    <span><p>5% is taken as a Service Charge - <span style="color:red;">$<?php echo $amt*.05;?></span></p></span>
                 </div>
                 <div class="col-lg-4" id="seller_info">
                     <img style="margin-right:1em;margin-bottom:1em;" width="200px" height="250px" src="<?php echo $seller -> getImage();?>" alt="profile_pic"/><br/>
-                    <span>5% Towards <?php echo $charity -> getName(); ?>: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt()*.05;?>!</span></span><br/>
-                    <span>85% for Seller <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $product -> getAmt()*.85;?>!</span></span>
+                    <span>5% Towards <?php echo $charity -> getName(); ?>: <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $amt*.05;?>!</span></span><br/>
+                    <span>85% for Seller <span style="color:#2CBB76;font-weight:bold;text-decoration:underline;">$<?php echo $amt*.85;?>!</span></span>
                     <hr style="margin:0;color:gray;"/>
-                    <span>-2.75% for Credit Card Processing: <span style="color:red;">$<?php echo $product -> getAmt()*.0275;?>!</span></span>
+                    <span>-2.75% for Credit Card Processing: <span style="color:red;">$<?php echo $amt*.0275;?>!</span></span>
                 </div>
             </div>
         <hr style="color:black;"/>

@@ -224,15 +224,15 @@ class db{
     function getProduct($id){
 
         //Get item from db
-        $sql = "SELECT * from products WHERE product_id = '" . $id . "'";
+        $sql_p = "SELECT * from products WHERE product_id = '" . $id . "'";
 
-        $result = mysql_query($sql, $this -> conn);
+        $result_p = mysql_query($sql_p, $this -> conn);
 
-        if(mysql_num_rows($result) == 0){
+        if(mysql_num_rows($result_p) == 0){
             return null;
         }
 
-        $row = mysql_fetch_assoc($result);
+        $row = mysql_fetch_assoc($result_p);
 
         $temp = new Item();
         $temp -> amt = $row["price"];
@@ -301,22 +301,24 @@ class db{
 
     function getTopItems(){
 
-        $sql = "SELECT * FROM products WHERE 1 = 1 ORDER BY price DESC";
+        $sql = "SELECT * FROM products ORDER BY price DESC";
 
         $result = mysql_query($sql, $this -> conn);
 
         $count = 0;
         $data = array();
         if(mysql_num_rows($result) > 0){
-            while($row = mysql_fetch_assoc($result) && $count < 3){
-                $item = new Item();
-                $item -> image = $row['images/default3.jpg'];
-                $item -> name = $row['product_name'];
-                $item -> amt = $row['price'];
-                $item -> id = $row['product_id'];
-                $data[$count] = $item;
+            while($row = mysql_fetch_assoc($result)){
+                if($count < 3) {
+                    $item = new Item();
+                    $item->image = $row['image'];
+                    $item->name = $row['product_name'];
+                    $item->amt = $row['price'];
+                    $item->id = $row['product_id'];
+                    $data[$count] = $item;
 
-                $count++;
+                    $count++;
+                }
             }
         }
 
@@ -351,11 +353,11 @@ class db{
                 $item = $this -> getProduct($dummy_array[$count]);
                 if(!is_null($item)) {
                     $temp .= "<div class='col-lg-4'>";
-                    $temp .= "<a href='product.php?id=" . $item->getID() . "'><img style='width:200px;height:150px;' src='" . $item->getImage() . "' alt='" . $item->getShortDesc() . "'/></a>";
+                    $temp .= "<a href='product.php?id=" . $dummy_array[$count] . "'><img style='width:200px;height:150px;' src='" . $item->getImage() . "' alt='" . $item->getShortDesc() . "'/></a>";
                     $temp .= "<div class='item-description'>";
-                    $temp .= "<span><a href='product.php?id=" . $item->getID() . "'>" . $item->getName() . "</a></span><br/>";
+                    $temp .= "<span><a href='product.php?id=" . $dummy_array[$count] . "'>" . $item->getName() . "</a></span><br/>";
                     $temp .= "<span>Current Bid: <span class='money'>$" . $item->getAmt() . "</span></span><br/>";
-                    $temp .= "<span>Benefits: <a href='viewcharity.php?id=" . $item->getCharity() . "'>" . $this->getCharity($item->getCharity())->getName() . "</a></span>";
+                    //$temp .= "<span>Benefits: <a href='viewcharity.php?id=" . $item->getCharity() . "'>" . $this->getCharity($item->getCharity())->getName() . "</a></span>";
                     $temp .= "</div>";
                     $temp .= "</div>";
                 }

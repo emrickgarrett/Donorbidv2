@@ -185,7 +185,7 @@ if(is_null($top_charity3)){
                     function(){   swal("Purchased!", "You will now be redirected!", "success");
 
 
-                    window.location.href = "winner.php?id=<?php echo $product -> getID();?>";
+                    window.location.href = "winner.php?id=<?php echo $id;?>&amt=" + price;
 
 
                     });

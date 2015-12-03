@@ -8,11 +8,10 @@
 require_once("classes/Donorbid.php");
 
 
-//$items = $db -> getTopItems();
-list($item0, $item1, $item2) = $db -> getTopItems();
-//$item0 = $items[0];
-//$item1 = $items[1];
-//$item2 = $items[2];
+$items = $db -> getTopItems();
+$item0 = $items[0];
+$item1 = $items[1];
+$item2 = $items[2];
 
 if(!is_null($item0)){$charity1Name = $db -> getCharity($item0 -> getCharity()) -> getName();}
 if(!is_null($item1)){$charity2Name = $db -> getCharity($item1 -> getCharity()) -> getName();}
