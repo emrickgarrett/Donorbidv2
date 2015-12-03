@@ -49,7 +49,7 @@ class db{
     /*** Functions to create for functionality for the site... */
     function getUser($id){
 
-        $sql = "SELECT username, full_name FROM users WHERE user_id '= " . $id . "'";
+        $sql = "SELECT * FROM users WHERE user_id = '" . $id . "'";
 
         $result = mysql_query($sql, $this -> conn);
         if(mysql_num_rows($result) > 0){
@@ -59,10 +59,11 @@ class db{
                 $temp = new User();
                 $temp -> username = $row["username"];
                 $temp -> setFullName($row["full_name"]);
+                $temp -> setId($id);
+                $temp -> setCharities($this -> getCharities($id));
                 return $temp;
             }
         }else{
-            echo "ERROR : " . mysql_error();
             return null;
         }
         return null;
@@ -99,19 +100,25 @@ class db{
     function getCharities($id){
         $charities = array();
 
-        $sql = "SELECT * FROM user_charity_like INNER JOIN charities ON user_charity_like.charity_id = charities.charity_id AND user_charity_like.user_id = '" . $id . "'";
+        $sql = "SELECT * FROM user_charity_like WHERE user_id = '" . $id . "'";
 
         $result = mysql_query($sql, $this -> conn);
-        if(mysql_num_rows($result) > 0){
-            while($row = mysql_fetch_assoc($result)){
-                $temp = new Charity();
-                $temp -> id = $row["charity_id"];
-                $temp -> name = $row["name"];
-                $temp -> desc = $row["desc"];
-                $charities[] = $temp;
+
+        if(mysql_num_rows($result) > 0) {
+            while($row = mysql_fetch_assoc($result)) {
+                $sql = "SELECT * FROM charities WHERE charity_id = '" . $row["charity_id"] . "'";
+
+                $result1 = mysql_query($sql, $this -> conn);
+                if (mysql_num_rows($result1) > 0) {
+                    while ($row2 = mysql_fetch_assoc($result1)) {
+                        $temp = new Charity();
+                        $temp->id = $row2["charity_id"];
+                        $temp->name = $row2["charity_name"];
+                        $temp->desc = $row2["charity_description"];
+                        $charities[] = $temp;
+                    }
+                }
             }
-        }else{
-            return null;
         }
 
         return $charities;
@@ -204,23 +211,46 @@ class db{
     function getProduct($id){
 
         //Get item from db
+        $sql = "SELECT * from products WHERE product_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+
+        if(mysql_num_rows($result) == 0){
+            return null;
+        }
+
+        $row = mysql_fetch_assoc($result);
+
         $temp = new Item();
-        $temp -> amt = 15.00;
-        $temp -> name = "Example Item";
-        $temp -> desc = "This is an example description";
-        $temp -> image = "default1.jpg";
-        $temp -> charity = 1;
-        $temp -> seller = 1;
-        return new Item();
+        $temp -> amt = $row["price"];
+        $temp -> name = $row["product_name"];
+        $temp -> desc = $row["description"];
+        $temp -> short_desc = $row["description"];
+        $temp -> setImage($row["image"]);
+        $temp -> charity = $row["charity_id"];
+        $temp -> seller = $this -> getUser($row["user_id"]);
+
+        return $temp;
     }
 
     function getCharity($id){
 
+        $sql = "SELECT * FROM charities WHERE charity_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+
+        if(mysql_num_rows($result) == 0){
+            return null;
+        }
+
+        $row = mysql_fetch_assoc($result);
+
         $temp = new Charity();
-        $temp -> name = "Feeding America";
-        $temp -> desc = "This is an example description of a Charity that will be replaced by actual descriptions.";
+        $temp -> name = $row["charity_name"];
+        $temp -> desc = $row["charity_description"];
         $temp -> dollars = 127.18;
         $temp -> id = $id;
+
         return $temp;
     }
 
@@ -279,14 +309,16 @@ class db{
             $temp .= "<div class='row' style='text-align:center;margin-bottom:2em;'>";
             for($j = 0; $j < 3 && $count < $number_of_dummies; $j++){
                 $item = $this -> getProduct($dummy_array[$count]);
-                $temp .= "<div class='col-lg-4'>";
-                    $temp .= "<a href='product.php?id=" . $item -> getID() ."'><img style='width:200px;height:150px;' src='" . $item -> getImage() . "' alt='" . $item -> getShortDesc() . "'/></a>";
+                if(!is_null($item)) {
+                    $temp .= "<div class='col-lg-4'>";
+                    $temp .= "<a href='product.php?id=" . $item->getID() . "'><img style='width:200px;height:150px;' src='" . $item->getImage() . "' alt='" . $item->getShortDesc() . "'/></a>";
                     $temp .= "<div class='item-description'>";
-                        $temp .= "<span><a href='product.php?id=" . $item -> getID() . "'>" . $item -> getName() . "</a></span><br/>";
-                        $temp .= "<span>Current Bid: <span class='money'>$" . $item -> getAmt() . "</span></span><br/>";
-                        $temp .= "<span>Benefits: <a href='viewcharity.php?id=" . $item -> getCharity() . "'>" . $this -> getCharity($item -> getCharity()) -> getName() . "</a></span>";
+                    $temp .= "<span><a href='product.php?id=" . $item->getID() . "'>" . $item->getName() . "</a></span><br/>";
+                    $temp .= "<span>Current Bid: <span class='money'>$" . $item->getAmt() . "</span></span><br/>";
+                    $temp .= "<span>Benefits: <a href='viewcharity.php?id=" . $item->getCharity() . "'>" . $this->getCharity($item->getCharity())->getName() . "</a></span>";
                     $temp .= "</div>";
-                $temp .= "</div>";
+                    $temp .= "</div>";
+                }
                 $count++;
             }
             $temp .= "</div>";

@@ -6,7 +6,6 @@
  * Time: 19:38
  */
 
-require_once("classes/Donorbid.php");
 
 ?>
 

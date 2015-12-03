@@ -26,7 +26,7 @@ class User {
         $this -> full_name = "Pam Powers";
         $this -> email = "default@default.com";
         $this -> address = "1123 default rd, default, default, 55555";
-        $this -> charities = array(-1, -2, -3);
+        $this -> charities = array(1, 2, 3);
         $this -> image = "images/pam.jpg";
         $this -> db = new db();
     }
@@ -41,7 +41,11 @@ class User {
 
         for($i = 0; $i < sizeof($this -> charities); $i++){
             $charity = $this -> db -> getCharity($this -> charities[$i]);
-            $returnString .= "<li><a href='#' id='" . $charity -> getID() . "'>" . $charity -> getName() . "</a></li>";
+            if(!is_null($charity)) {
+                $returnString .= "<li><a href='#' id='" . $charity->getID() . "'>" . $charity->getName() . "</a></li>";
+            }else{
+
+            }
         }
 
         return $returnString;
@@ -58,7 +62,9 @@ class User {
 
         for($i = 0; $i < sizeof($this -> charities); $i++){
             $charity = $this -> db -> getCharity($this -> charities[$i]);
-            $returnString .= "$('#" . $charity -> getId() . "').click(function(){\$('#non_profit_button_select').html('" . $charity -> getName() . "');});";
+            if(!is_null($charity)) {
+                $returnString .= "$('#" . $charity->getId() . "').click(function(){\$('#non_profit_button_select').html('" . $charity->getName() . "');});";
+            }
         }
 
         return $returnString;

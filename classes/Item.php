@@ -93,7 +93,9 @@ class Item {
     }
 
     function setImage($image){
-        $this -> image = $image;
+        if($image !== "") {
+            $this->image = $image;
+        }
     }
 
 

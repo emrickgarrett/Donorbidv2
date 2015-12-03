@@ -11,13 +11,47 @@ require_once("classes/Donorbid.php");
 $id = $_GET['id'];
 
 $product = $db -> getProduct($id);
+if(is_null($product)){
+    $product = new Item();
+}
+if(is_null($product -> getSeller())){
+    $product -> seller = new User();
+}
 $charity = $db -> getCharity($product -> getCharity());
-$seller = $db -> getUser($product -> getSeller());
+
+if(is_null($charity)){
+    $charity = new Charity();
+}
+
+$seller = $product -> getSeller();
+
+if(is_null($seller)){
+    $seller = new User();
+}
 
 
-$top_charity1 = $db -> getCharity($seller -> getCharities()[0]);
-$top_charity2 = $db -> getCharity($seller -> getCharities()[1]);
-$top_charity3 = $db -> getCharity($seller -> getCharities()[2]);
+//Error here... these aren't able to get charities from seller for some reason....
+//$top_charity1 = $db -> $seller -> getCharities()[0];
+//$top_charity2 = $db -> $seller -> getCharities()[1];
+//$top_charity3 = $db -> $seller -> getCharities()[2];
+
+//temp
+$top_charity1 = new Charity();
+$top_charity2 = new Charity();
+$top_charity3 = new Charity();
+
+if(is_null($top_charity1)){
+    $top_charity1 = new Charity();
+    $top_charity1 -> name = "";
+}
+if(is_null($top_charity2)){
+    $top_charity2 = new Charity();
+    $top_charity2 -> name = "";
+}
+if(is_null($top_charity3)){
+    $top_charity3 = new Charity();
+    $top_charity3 -> name = "";
+}
 ?>
 
 <!DOCTYPE HTML>

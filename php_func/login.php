@@ -16,8 +16,6 @@ $user = $db -> login($username, $password);
 
 if($user){
     $_SESSION["user"] = $user;
-    echo "Username : " . $user -> getUsername() . " Charities " . $user -> getCharities() . " Address: " . $user -> getADdress() . " Card: " . $user -> getCard() .
-         "Full Name: " . $user -> getFullName();
 }else{
     header('HTTP/1.1 500 Internal Server Error');
     die("Wrong Username or Password");

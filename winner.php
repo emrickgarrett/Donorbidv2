@@ -11,20 +11,32 @@ require_once("classes/Donorbid.php");
 $id = $_GET['id'];
 
 $product = $db -> getProduct($id);
+
+if(is_null($product)){
+    $product = new Item();
+}
+
 $charity = $db -> getCharity($product -> getCharity());
-$seller = $db -> getUser($product -> getSeller());
+
+if(is_null($charity)){
+    $charity = new Charity();
+}
+
+$seller = $product -> getSeller();
+
+if(is_null($seller)){
+    $seller = new User();
+}
+
 $user = $_SESSION['user'];
 
 if(!$util -> isValidUser($user)){
     //Disabled until login is working!
-    //header( 'Location: login.php' ) ;
+    header( 'Location: login.php' ) ;
 }else{
-    //for temporary debuggin
-    $user = new User();
+
 }
 
-
-$user = new User();
 //temporary here
 $seller-> setImage("images/creep.jpg");
 ?>
