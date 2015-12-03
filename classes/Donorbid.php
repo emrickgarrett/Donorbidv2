@@ -5,6 +5,7 @@
  * Date: 10/17/2015
  * Time: 4:11 PM
  */
+session_start();
 
 require_once("Charity.php");
 require_once("Item.php");

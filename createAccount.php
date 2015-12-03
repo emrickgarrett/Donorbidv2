@@ -73,12 +73,12 @@
 <script type="text/javascript">
 $("#create_account-button").click(function() {
 
-    var username = $("#username").value;
-    var password = $("#password").value;
-    var email = $("#email").value;
-    var cardNumber = $("#card-number").value;
-    var cvc = $("#cvc").value;
-    var address = $("#address").value;
+    var username = $("#username").val();
+    var password = $("#password").val();
+    var email = $("#email").val();
+    var cardNumber = $("#card-number").val();
+    var cvc = $("#cvc").val();
+    var address = $("#address").val();
 
     //Ajax call to create user
     $.ajax({
@@ -94,10 +94,11 @@ $("#create_account-button").click(function() {
             alert('Data: '+data);
             window.location.href='index.php';
         },
-        error : function(request,error)
-        {
-            alert("Request: "+JSON.stringify(request));
-            //Wait for user to create account
+        error : function(xhr, status, error) {
+            alert(xhr.responseText);
+            if(xhr.responseText === "Account Created"){
+                window.location.href='index.php';
+            }
         }
     });
 

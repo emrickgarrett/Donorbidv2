@@ -159,11 +159,41 @@ class db{
 
     function createUser($username, $password, $email, $card_number, $cvc, $expDate, $address, $zipcode){
 
-        $user = new User();
 
-        echo "User Created with values ";
+        $sql = "SELECT * FROM users WHERE username = '" . $username . "'";
+        $result = mysql_query($sql, $this -> conn);
 
-        return $user;
+        if(mysql_num_rows($result) > 0){
+            return "User Already Exists";
+        }
+
+        //long series of insert statements
+        $sql = "INSERT into users VALUES(NULL, '" . $username . "', '" . $password . "', '')";
+
+        $result = mysql_query($sql, $this -> conn);
+        $user_id = mysql_insert_id();
+
+
+        $sql = "INSERT into emails VALUES(NULL, '" . $email . "', '" . $user_id . "')";
+
+        $result = mysql_query($sql, $this -> conn);
+        $email_id = mysql_insert_id();
+
+        $sql = "INSERT into credit_cards VALUES(NULL, '" . $card_number . "', '" . $cvc . "', '" . $expDate . "')";
+
+        $result = mysql_query($sql, $this -> conn);
+        $card_id = mysql_insert_id();
+
+        $sql = "INSERT into user_cards VALUES(NULL, '" . $user_id . "', '" . $card_id . "')";
+        mysql_query($sql, $this -> conn);
+
+        $sql = "INSERT into addresses VALUES(NULL, '" . $zipcode . "', '" . $address . "', '" . $user_id . "' )";
+
+        mysql_query($sql, $this -> conn);
+
+
+        //Select User and login the user
+        return $this -> login($username, $password);
 
     }
 

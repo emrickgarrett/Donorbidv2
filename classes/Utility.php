@@ -10,7 +10,7 @@ class Utility {
 
 
     function getUserMenu($user){
-        if($this -> isValidUser($user)){
+        if($this -> isValidUser()){
             //Give User Menu
             return "" .
             "<li><a href='profile.php?full_name=Dwight%20Danger&image=images/creep.jpg&username=dwight72'>Profile</a></li>" .
@@ -23,12 +23,12 @@ class Utility {
         }
     }
 
-    function isValidUser($user){
+    function isValidUser(){
         return $this -> isLoggedIn();
     }
 
     function isLoggedIn(){
-        if($_SESSION["user"] != ""){
+        if(isset($_SESSION["user"])){
             return true;
         }
         return false;
