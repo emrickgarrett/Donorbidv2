@@ -53,8 +53,8 @@
         <div class="input-group" style="margin-bottom:.5em;">
             <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></span>
             <input id="card-number" type="number" class="form-control" placeholder="5555555555555555" aria-describedby="credit-card">
-            <span class="input-group-addon">CVV</span>
-            <input id="cvv" type="number" class="form-control" placeholder="555" aria-describedby="credit-card">
+            <span class="input-group-addon">CVC</span>
+            <input id="cvc" type="number" class="form-control" placeholder="555" aria-describedby="credit-card">
         </div>
         <div class="input-group" style="margin-bottom:.5em;">
             <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
@@ -75,10 +75,31 @@ $("#create_account-button").click(function() {
 
     var username = $("#username").value;
     var password = $("#password").value;
-    
-    //create account and login
+    var email = $("#email").value;
+    var cardNumber = $("#card-number").value;
+    var cvc = $("#cvc").value;
+    var address = $("#address").value;
 
-    window.location.href="index.php";
+    //Ajax call to create user
+    $.ajax({
+
+        url : 'php_func/createUser.php',
+        type : 'POST',
+        data : {
+            'username' : username, 'password': password, 'email': email, 'cardNumber' : cardNumber,
+            'cvc' : cvc, 'address' : address
+        },
+        dataType:'json',
+        success : function(data) {
+            alert('Data: '+data);
+            window.location.href='index.php';
+        },
+        error : function(request,error)
+        {
+            alert("Request: "+JSON.stringify(request));
+            //Wait for user to create account
+        }
+    });
 
 });
 

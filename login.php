@@ -59,12 +59,24 @@
 <script type="text/javascript">
 $("#login-button").click(function() {
 
-    var username = $("#username").value;
-    var password = $("#password").value;
+    var username = $("#username").val();
+    var password = $("#password").val();
 
     //add to db and login
-
-    window.location.href="index.php";
+    $.ajax({
+        type: 'POST',
+        url: 'php_func/login.php',
+        data: {
+            username: username, password: password
+        },
+        success: function(data) {
+            alert(data);
+            window.location.href="index.php";
+        },
+        error: function(xhr, status, error) {
+            alert(xhr.responseText);
+        }
+    });
 
 });
 

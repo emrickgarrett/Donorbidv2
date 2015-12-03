@@ -133,7 +133,7 @@ $seller-> setImage("images/creep.jpg");
 
     $(document).ready(function(){
 
-        <?echo $user -> printCharityMenuClicks(); ?>
+        <?php echo $user -> printCharityMenuClicks(); ?>
         $("#find_another").click(function(){
             //Bring up window to find a new charity (search bar perhaps?)
             swal({   title: "Search Charity!",   text: "Enter the name of the charity:",   type: "input",   showCancelButton: true,   closeOnConfirm: false,

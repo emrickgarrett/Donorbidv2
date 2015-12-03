@@ -10,32 +10,160 @@ class db{
 
     public $db_name = "donorbiddb";
     public $conn = NULL;
+    //create connection/close connections
+    //Obviously in real system you don't make this obvious and submit to Github
+    public $servername = "localhost";
+    public $username = "root";
+    public $password = "eUqJd2g2mx";
 
     function db(){
-        //create connection/close connections
+
+
+        $this -> connect();
     }
 
     function __destruct(){
         //close connection
+        $this -> disconnect();
     }
 
     function connect(){
+        // Create connection
+
+        $this -> conn = mysql_connect($this -> servername, $this -> username, $this -> password);
+
+        // Check connection
+        if (!$this -> conn) {
+            die("Connection failed: " . mysql_error());
+        }
+
+        mysql_select_db($this -> db_name, $this -> conn);
+        //echo "Connected successfully";
 
     }
 
     function disconnect(){
-
+        mysql_close($this -> conn);
     }
 
     /*** Functions to create for functionality for the site... */
     function getUser($id){
-        $temp = new User();
-        $temp -> username = "swagyolo420";
-        $temp -> setFullName("Pam Powers");
-        return $temp;
+
+        $sql = "SELECT username, full_name FROM users WHERE user_id '= " . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            //create user based on data
+            // output data of each row
+            while($row = mysql_fetch_assoc($result)) {
+                $temp = new User();
+                $temp -> username = $row["username"];
+                $temp -> setFullName($row["full_name"]);
+                return $temp;
+            }
+        }else{
+            echo "ERROR : " . mysql_error();
+            return null;
+        }
+        return null;
     }
 
-    function createUser(){
+    function login($username, $password){
+        $sql = "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+
+        if(mysql_num_rows($result) > 0){
+            //successful login
+            while($row = mysql_fetch_assoc($result)){
+                $user = new User();
+
+                $user -> charities = $this -> getCharities($row["user_id"]);
+                $user -> setEmail($this -> getEmail($row["user_id"]));
+                $user -> setAddress($this -> getAddress($row["user_id"]));
+
+                $card = $this -> getCard($row["user_id"]);
+                $user -> setCard($card[0]);
+
+                $user -> setFullName($row["full_name"]);
+                $user -> setUsername($row["username"]);
+                $user -> setId($row["user_id"]);
+                return $user;
+            }
+        }else{
+            return null; //Unsuccessful login
+        }
+        return null;
+    }
+
+    function getCharities($id){
+        $charities = array();
+
+        $sql = "SELECT * FROM user_charity_like INNER JOIN charities ON user_charity_like.charity_id = charities.charity_id AND user_charity_like.user_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            while($row = mysql_fetch_assoc($result)){
+                $temp = new Charity();
+                $temp -> id = $row["charity_id"];
+                $temp -> name = $row["name"];
+                $temp -> desc = $row["desc"];
+                $charities[] = $temp;
+            }
+        }else{
+            return null;
+        }
+
+        return $charities;
+    }
+
+    function getEmail($id){
+        $sql = "SELECT email from emails WHERE user_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            $row = mysql_fetch_assoc($result);
+            return $row["email"];
+        }else{
+            return "No Email";
+        }
+    }
+
+    function getAddress($id){
+        $sql = "SELECT address from addresses WHERE user_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            $row = mysql_fetch_assoc($result);
+            return $row["address"];
+        }else{
+            return "No Address";
+        }
+    }
+
+    function getCard($id){
+        $sql = "SELECT * FROM user_cards INNER JOIN credit_cards ON user_cards.card_id = credit_cards.card_id AND user_cards.user_id = '" . $id . "'";
+        $data = array();
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            $row = mysql_fetch_assoc($result);
+            $data[] = $row["card_id"];
+            $data[] = $row["card_number"];
+            $data[] = $row["cvc"];
+            $data[] = $row["expiration_date"];
+            return $data;
+        }else{
+            return null;
+        }
+    }
+
+    function createUser($username, $password, $email, $card_number, $cvc, $expDate, $address, $zipcode){
+
+        $user = new User();
+
+        echo "User Created with values ";
+
+        return $user;
 
     }
 
@@ -57,6 +185,7 @@ class db{
     }
 
     function getCharity($id){
+
         $temp = new Charity();
         $temp -> name = "Feeding America";
         $temp -> desc = "This is an example description of a Charity that will be replaced by actual descriptions.";

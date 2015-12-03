@@ -7,5 +7,25 @@
       <schema-pattern>donorbiddb.*</schema-pattern>
       <default-schemas>donorbiddb.*</default-schemas>
     </data-source>
+    <data-source name="MySQL - donorbiddb@website" uuid="e7dacaa3-645c-48a0-8d06-cf82aa0b60e1">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>donorbiddb.*</schema-pattern>
+      <default-schemas>donorbiddb.*</default-schemas>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>104.236.201.29</proxy-host>
+        <proxy-port>22</proxy-port>
+        <secret-storage>master_key</secret-storage>
+        <user>root</user>
+        <use-password>false</use-password>
+        <private-key-path>C:\Users\Garrett\Documents\ssh\ssh_key.ppk</private-key-path>
+      </ssh-properties>
+    </data-source>
+    <data-source name="MySQL - donorbiddb@http://104.236.201.29/" uuid="c8367131-e1a2-4fe6-8256-9f1672efe324">
+      <secret-storage>memory</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>
