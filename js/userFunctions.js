@@ -3,6 +3,7 @@
  */
 
 
+//Used to give the Search some functionality when touched
 function productSearch(){
     $("#search_type").html("<span id='type'>Product</span> <span class='caret'></span>");
 }
@@ -15,7 +16,7 @@ function causeSearch(){
     $("#search_type").html("<span id='type'>Cause</span> <span class='caret'></span>");
 }
 
-
+//Gives the 'enter' functionality to the search bar
 $(document).ready(function(){
 
     $("#search_bar").keypress(function (e) {

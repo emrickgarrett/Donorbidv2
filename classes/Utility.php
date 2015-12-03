@@ -9,6 +9,7 @@
 class Utility {
 
 
+    //Print menu in the top Right based on whether a user is logged in or not
     function getUserMenu($user){
         if($this -> isValidUser()){
             //Give User Menu
@@ -24,10 +25,12 @@ class Utility {
         }
     }
 
+    //Determine if it's a valid user (never got past a basic login)
     function isValidUser(){
         return $this -> isLoggedIn();
     }
 
+    //Check if user is logged in
     function isLoggedIn(){
         if(isset($_SESSION["user"])){
             return true;

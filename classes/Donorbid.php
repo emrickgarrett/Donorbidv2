@@ -6,6 +6,7 @@
  * Time: 4:11 PM
  */
 
+//General API class. Call this file to get all Donorbid Classes and access to the database/utilities
 
 require_once("Charity.php");
 require_once("Item.php");

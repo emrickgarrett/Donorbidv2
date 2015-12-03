@@ -11,7 +11,7 @@ class db{
     public $db_name = "donorbiddb";
     public $conn = NULL;
     //create connection/close connections
-    //Obviously in real system you don't make this obvious and submit to Github
+    //Obviously in real system you don't make this and submit to Github
     public $servername = "localhost";
     public $username = "root";
     public $password = "eUqJd2g2mx";
@@ -43,10 +43,13 @@ class db{
     }
 
     function disconnect(){
+        //close connection
         mysql_close($this -> conn);
     }
 
     /*** Functions to create for functionality for the site... */
+
+    //get a user based on their id
     function getUser($id){
 
         $sql = "SELECT * FROM users WHERE user_id = '" . $id . "'";
@@ -69,6 +72,7 @@ class db{
         return null;
     }
 
+    //attempt to login a user with username + password. Real world system would utilize encryption (such as bcrypt)
     function login($username, $password){
         $sql = "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
 
@@ -98,6 +102,7 @@ class db{
         return null;
     }
 
+    //Get a list of charities based on a userId
     function getCharities($id){
         $charities = array();
 
@@ -125,6 +130,7 @@ class db{
         return $charities;
     }
 
+    //Get a users email by their id
     function getEmail($id){
         $sql = "SELECT email from emails WHERE user_id = '" . $id . "'";
 
@@ -137,6 +143,7 @@ class db{
         }
     }
 
+    //Get a users address by their id
     function getAddress($id){
         $sql = "SELECT address from addresses WHERE user_id = '" . $id . "'";
 
@@ -149,6 +156,7 @@ class db{
         }
     }
 
+    //Get a users zipcode by their id
     function getZipcode($id){
         $sql = "SELECT zipcode FROM addresses WHERE user_id = '" . $id . "'";
 
@@ -161,6 +169,7 @@ class db{
         }
     }
 
+    //get a users card by their id
     function getCard($id){
         $sql = "SELECT * FROM user_cards INNER JOIN credit_cards ON user_cards.card_id = credit_cards.card_id AND user_cards.user_id = '" . $id . "'";
         $data = array();
@@ -177,6 +186,7 @@ class db{
         }
     }
 
+    //create a user using the data from the form
     function createUser($username, $password, $email, $card_number, $cvc, $expDate, $address, $zipcode){
 
 
@@ -217,10 +227,12 @@ class db{
 
     }
 
+    //Unimplemented
     function createProduct(){
 
     }
 
+    //Get a product based on it's ID
     function getProduct($id){
 
         //Get item from db
@@ -246,6 +258,7 @@ class db{
         return $temp;
     }
 
+    //Get a charity based on it's ID
     function getCharity($id){
 
         $sql = "SELECT * FROM charities WHERE charity_id = '" . $id . "'";
@@ -267,38 +280,47 @@ class db{
         return $temp;
     }
 
+    //Unimplemented
     function createCharity(){
 
     }
 
+    //Unimplemented
     function buyItem(){
 
     }
 
+    //Get default Items, Not used
     function getItems(){
         return array(new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item(), new Item());
     }
 
+    //Unimplemented
     function sellItem(){
 
     }
 
+    //Unimplemented
     function searchCharity(){
 
     }
 
+    //Unimplemented
     function searchCause(){
 
     }
 
+    //Unimplemented
     function createCause(){
 
     }
 
+    //Unimplemented
     function getCause(){
         return "watch me nay nay";
     }
 
+    //Get the top 3 items based on price
     function getTopItems(){
 
         $sql = "SELECT * FROM products ORDER BY price DESC";
@@ -326,6 +348,7 @@ class db{
     }
 
 
+    //Print items based on a search query
     function printItems($search){
 
         $sql = "SELECT * FROM products WHERE product_name LIKE '%" . $search . "%'";
@@ -369,6 +392,7 @@ class db{
         return $temp;
     }
 
+    //Unimplemented
     function printCharities($search){
         $temp = "";
 
@@ -377,6 +401,7 @@ class db{
         return $temp;
     }
 
+    //Unimplemented
     function printCauses($search){
         $temp = "";
 

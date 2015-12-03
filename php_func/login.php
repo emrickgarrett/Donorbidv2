@@ -4,6 +4,7 @@
  * User: Garrett
  * Date: 12/3/2015
  * Time: 1:45 AM
+ * Attempt to Login a User
  */
 
 require_once("../classes/Donorbid.php");
