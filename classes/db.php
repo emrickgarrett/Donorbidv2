@@ -82,6 +82,7 @@ class db{
                 $user -> charities = $this -> getCharities($row["user_id"]);
                 $user -> setEmail($this -> getEmail($row["user_id"]));
                 $user -> setAddress($this -> getAddress($row["user_id"]));
+                $user -> setZipcode($this -> getZipcode($row["user_id"]));
 
                 $card = $this -> getCard($row["user_id"]);
                 $user -> setCard($card[0]);
@@ -132,7 +133,7 @@ class db{
             $row = mysql_fetch_assoc($result);
             return $row["email"];
         }else{
-            return "No Email";
+            return "";
         }
     }
 
@@ -144,7 +145,19 @@ class db{
             $row = mysql_fetch_assoc($result);
             return $row["address"];
         }else{
-            return "No Address";
+            return "";
+        }
+    }
+
+    function getZipcode($id){
+        $sql = "SELECT zipcode FROM addresses WHERE user_id = '" . $id . "'";
+
+        $result = mysql_query($sql, $this -> conn);
+        if(mysql_num_rows($result) > 0){
+            $row = mysql_fetch_assoc($result);
+            return $row["zipcode"];
+        }else{
+            return "00000";
         }
     }
 
@@ -287,23 +300,50 @@ class db{
     }
 
     function getTopItems(){
-        $item1 = new Item();
-        $item1 -> image = "images/default1.jpg";
-        $item1 -> name = "default1";
 
-        $item3 = new Item();
-        $item3 -> image = "images/default3.jpg";
-        $item3 -> name = "default3";
-        return array($item1, new Item(), $item3);
+        $sql = "SELECT * FROM products WHERE 1 = 1 ORDER BY price DESC";
+
+        $result = mysql_query($sql, $this -> conn);
+
+        $count = 0;
+        $data = array();
+        if(mysql_num_rows($result) > 0){
+            while($row = mysql_fetch_assoc($result) && $count < 3){
+                $item = new Item();
+                $item -> image = $row['images/default3.jpg'];
+                $item -> name = $row['product_name'];
+                $item -> amt = $row['price'];
+                $item -> id = $row['product_id'];
+                $data[$count] = $item;
+
+                $count++;
+            }
+        }
+
+        return $data;
     }
 
 
     function printItems($search){
+
+        $sql = "SELECT * FROM products WHERE product_name LIKE '%" . $search . "%'";
+
+        $result = mysql_query($sql, $this -> conn);
+
+        $dummy_array = array();
+        $number_of_dummies = 0;
+        if(mysql_num_rows($result) > 0){
+            while($row = mysql_fetch_assoc($result)) {
+                $dummy_array[] = $row["product_id"];
+                $number_of_dummies++;
+            }
+        }else{
+            return "Found No Items For " . $search . "...";
+        }
+
         //Print stuff below
         $temp = "";
         //get Data
-        $number_of_dummies = 9;
-        $dummy_array = array(-1, -2, -3, -4, -5, -6, -7, -8, -9);
         $count = 0;
         for($i = 0; $i < $number_of_dummies/3; $i++){
             $temp .= "<div class='row' style='text-align:center;margin-bottom:2em;'>";

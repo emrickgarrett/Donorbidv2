@@ -5,10 +5,20 @@
  * Date: 3/7/2015
  * Time: 04:24
  */
+require_once("classes/Donorbid.php");
 
-$image = $_GET['image'];
-$name = $_GET['full_name'];
-$username = $_GET['username'];
+$id = $_GET["id"];
+
+$user = $db -> getUser($id);
+
+$image = $user -> getImage();
+
+$name = $user -> getFullName();
+if($name === ""){
+    $name = "No Name Listed";
+}
+
+$username = $user -> getUsername();
 
 ?>
 

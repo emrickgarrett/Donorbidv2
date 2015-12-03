@@ -12,11 +12,12 @@ class Utility {
     function getUserMenu($user){
         if($this -> isValidUser()){
             //Give User Menu
+            $user = $_SESSION["user"];
             return "" .
-            "<li><a href='profile.php?full_name=Dwight%20Danger&image=images/creep.jpg&username=dwight72'>Profile</a></li>" .
+            "<li><a href='profile.php?id=" . $user -> getId() . "'>Profile</a></li>" .
             "<li><a href='seller.php'>Sold Items <span style='font-size:.8em;' class='badge'>1</span></a></li>" .
             "<li><a href=''>Global Stats</a></li>" .
-            "<li><a id='logout' href='#'>Log Out</a></li>";
+            "<li><a id='logout' href='php_func/logout.php'>Log Out</a></li>";
         }else{
             return "<li><a href='createAccount.php'>Create Account</a></li>" .
                 "<li><a href='login.php' id='login'>Log In</a></li>";

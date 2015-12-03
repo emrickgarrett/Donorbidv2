@@ -70,7 +70,6 @@ $("#login-button").click(function() {
             username: username, password: password
         },
         success: function(data) {
-            alert(data);
             window.location.href="index.php";
         },
         error: function(xhr, status, error) {

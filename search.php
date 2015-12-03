@@ -5,10 +5,8 @@
  * Date: 3/6/2015
  * Time: 23:02
  */
-
+require("classes/Donorbid.php");
 //Get list of items and print them below
-require_once("classes/Donorbid.php");
-
 
 $search_query = $_GET["search"];
 $search_type = $_GET['type'];
@@ -69,12 +67,10 @@ $search_type = $_GET['type'];
             <!-- Items Go Here -->
             <?php
             if($search_type === "Product") {
-                echo $db->printItems($search_query);
-            }
-            if($search_type === "Charity"){
+                echo $db -> printItems($search_query);
+            }elseif($search_type === "Charity"){
                 echo $db -> printCharities($search_query);
-            }
-            if($search_type === "Cause"){
+            }elseif($search_type === "Cause"){
                 echo $db -> printCauses($search_query);
             }
             ?>

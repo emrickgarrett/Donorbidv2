@@ -130,10 +130,10 @@ $seller-> setImage("images/creep.jpg");
                 </div>
             </div>
         <hr style="color:black;"/>
-        <input style="width:250px;float:left;margin-right:.5em;" class="form-control" type="text" placeholder="Street"><input style="width:100px;;" class="form-control" type="number" placeholder="Zip">
+        <input style="width:250px;float:left;margin-right:.5em;" class="form-control" type="text" placeholder="Street" value="<?php echo $user -> getAddress(); ?>"><input style="width:100px;;" class="form-control" type="number" placeholder="Zip" value="<?php echo $user -> getZipcode(); ?>">
         <input style="width:250px;margin-top:1em;" class="form-control" type="tel" placeholder="Phone Number">
-        <input style="width:250px;float:left;margin-top:1em;margin-right:.5em;" class="form-control" type="number" placeholder="Credit Card #"><input style="width:75px;margin-top:1em;;" class="form-control" type="number" placeholder="CVC">
-        <input style="width:250px;margin-top:1em;" class="form-control" type="text" placeholder="Cardholder's Name">
+        <input style="width:250px;float:left;margin-top:1em;margin-right:.5em;" class="form-control" type="number" placeholder="Credit Card #" value="<?php echo $user -> getCardNumber(); ?>"><input style="width:75px;margin-top:1em;;" class="form-control" type="number" placeholder="CVC" value="<?php echo $user -> getCardCVC(); ?>">
+        <input style="width:250px;margin-top:1em;" class="form-control" type="text" placeholder="Cardholder's Name" value="<?php echo $user -> getFullName(); ?>">
 
         <button id="confirm_button" style="margin-top:1em;margin-bottom:5em;" class="btn btn-lg btn-success">Confirm</button>
     </div>

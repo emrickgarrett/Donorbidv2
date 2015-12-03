@@ -5,6 +5,7 @@
  * Date: 3/7/2015
  * Time: 07:33
  */
+require_once("classes/Donorbid.php");
 
 ?>
 <!DOCTYPE HTML>

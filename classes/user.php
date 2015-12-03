@@ -16,6 +16,7 @@ class User {
     private $full_name = "";
     private $email = "";
     private $address = "";
+    private $zipcode = 0;
     private $cardID = -1;
     public $charities = array();
     public $image = "";
@@ -29,6 +30,7 @@ class User {
         $this -> charities = array(1, 2, 3);
         $this -> image = "images/pam.jpg";
         $this -> db = new db();
+        $this -> zipcode = 55555;
     }
 
     function __destruct(){
@@ -128,6 +130,14 @@ class User {
         $this -> cardID = $cardID;
     }
 
+    function getCardNumber(){
+        return "";
+    }
+
+    function getCardCVC(){
+        return "";
+    }
+
     function getCharities(){
         return $this -> charities;
     }
@@ -142,6 +152,14 @@ class User {
 
     function setImage($image){
         $this -> image = $image;
+    }
+
+    function setZipcode($zipcode){
+        $this -> zipcode = $zipcode;
+    }
+
+    function getZipcode(){
+        return $this -> zipcode;
     }
 
     function storeUser(){

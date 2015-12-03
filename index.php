@@ -5,7 +5,18 @@
  * Date: 3/6/2015
  * Time: 19:39
  */
-require("classes/Donorbid.php");
+require_once("classes/Donorbid.php");
+
+
+//$items = $db -> getTopItems();
+list($item0, $item1, $item2) = $db -> getTopItems();
+//$item0 = $items[0];
+//$item1 = $items[1];
+//$item2 = $items[2];
+
+if(!is_null($item0)){$charity1Name = $db -> getCharity($item0 -> getCharity()) -> getName();}
+if(!is_null($item1)){$charity2Name = $db -> getCharity($item1 -> getCharity()) -> getName();}
+if(!is_null($item2)){$charity3Name = $db -> getCharity($item2 -> getCharity()) -> getName();}
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -80,26 +91,33 @@ require("classes/Donorbid.php");
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <a href="product.php?id=<?php echo $db -> getTopItems()[0] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[0] -> getImage(); ?>" alt="ipod"/></a>
+                <?php if(!is_null($item0)){ echo '
+                <a href="product.php?id=' . $item0 -> getID() . '"><img width="250px" height="150px" src="' . $item0 -> getImage() . '" alt="ipod"/></a>
                 <div>
-                    <p><?php echo $db -> getTopItems()[0] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[0] -> getAmt(); ?></p>
-                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getCharity($db -> getTopItems()[0] -> getCharity()) -> getName(); ?></a></p>
+                    <p>' . $item0 -> getName() . ' Starts At: $' . $item0 -> getAmt() . '</p>
+                    <p>5% of Proceeds Go to <a href="#">' .  $charity1Name . '</a></p>
                 </div>
+                ';}?>
             </div>
             <div class="col-lg-4" style="text-align:center;padding:.5em;">
-                <a href="product.php?id=<?php echo $db -> getTopItems()[1] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[1] -> getImage(); ?>" alt="ipod"/></a>
+                <?php if(!is_null($item1)){ echo '
+                <a href="product.php?id=' . $item1 -> getID() . '"><img width="250px" height="150px" src="' . $item1 -> getImage() . '" alt="ipod"/></a>
                 <div>
-                    <p><?php echo $db -> getTopItems()[1] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[1] -> getAmt(); ?></p>
-                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getCharity($db -> getTopItems()[1] -> getCharity()) -> getName(); ?></a></p>
+                    <p>' . $item1 -> getName() . ' Starts At: $' . $item1 -> getAmt() . '</p>
+                    <p>5% of Proceeds Go to <a href="#">' .  $charity2Name . '</a></p>
                 </div>
+                ';}?>
             </div>
+
             <div class="col-lg-3" style="text-align:center;padding:.5em;">
-                <a href="product.php?id=<?php echo $db -> getTopItems()[2] -> getID(); ?>"><img width="250px" height="150px" src="<?php echo $db -> getTopItems()[2] -> getImage(); ?>" alt="ipod"/></a>
+                <?php if(!is_null($item2)){ echo '
+                <a href="product.php?id=' . $item2 -> getID() . '"><img width="250px" height="150px" src="' . $item2 -> getImage() . '" alt="ipod"/></a>
                 <div>
-                    <p><?php echo $db -> getTopItems()[2] -> getName(); ?> Starts At: $<?php echo $db -> getTopItems()[2] -> getAmt(); ?></p>
-                    <p>5% of Proceeds Go to <a href="#"><?php echo $db -> getCharity($db -> getTopItems()[2] -> getCharity()) -> getName(); ?></a></p>
+                    <p>' . $item2 -> getName() . ' Starts At: $' . $item2 -> getAmt() . '</p>
+                    <p>5% of Proceeds Go to <a href="#">' .  $charity3Name . '</a></p>
                 </div>
-            </div>
+            </div>';
+             }?>
             <div class="col-lg-1"></div>
         </div>
 
